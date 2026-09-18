@@ -8,5 +8,6 @@ dist/
 Thumbs.db
 
 # Heavy Raw Production Renders & Uncompressed Sequences (>100MB limit on GitHub)
-*.mov
+Product_box_*.mov
+*Product_box_*.mov
 *bg initial animatiton*
