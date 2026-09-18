@@ -20,7 +20,6 @@ let activeVariantIndex = 0;
 let loadedFrames = [];
 let isIntroPlaying = false;
 let isLoopLocked = false;
-let fluidOrb = null;
 let matrixOrb = null;
 
 // DOM Elements
@@ -80,15 +79,6 @@ async function init() {
 }
 
 function setupRareUI() {
-  // Rare UI: Fluid Orb behind product box
-  const heroOrbEl = document.getElementById('hero-fluid-orb');
-  if (heroOrbEl) {
-    fluidOrb = new FluidOrbInstance(heroOrbEl, {
-      size: 520,
-      color: COLOR_VARIANTS[0].hex
-    });
-  }
-
   // Rare UI: Matrix Orb in Loader HUD
   const matrixOrbEl = document.getElementById('loader-matrix-orb');
   if (matrixOrbEl) {
@@ -389,11 +379,6 @@ function switchColorVariant(targetIndex) {
       duration: 0.45,
       ease: "power2.out"
     });
-  }
-
-  // Update Rare UI Fluid Orb Color
-  if (fluidOrb) {
-    fluidOrb.setColor(targetData.hex);
   }
 
   // Update Buttons

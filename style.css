@@ -698,30 +698,6 @@ html, body {
   justify-content: center;
 }
 
-/* Rare UI Fluid Orb (WebGL Organic Liquid Aura) */
-.hero-fluid-orb {
-  position: absolute;
-  width: 520px;
-  height: 520px;
-  max-width: 85vw;
-  max-height: 85vw;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 80px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 30px currentColor);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
-  animation: float-orb 8s ease-in-out infinite alternate;
-}
-
-@keyframes float-orb {
-  0% { transform: scale(0.96) translateY(4px); }
-  100% { transform: scale(1.04) translateY(-6px); }
-}
-
 /* 3 Product Videos Stacked with position: absolute */
 .product-video-stage {
   position: absolute;
