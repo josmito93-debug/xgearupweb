@@ -689,7 +689,7 @@ html, body {
 /* Typography Backdrop behind alpha video */
 .hero-typography-backdrop {
   position: absolute;
-  top: clamp(80px, 11.5vh, 140px);
+  top: clamp(110px, 14.5vh, 175px);
   left: 0;
   right: 0;
   display: flex;
@@ -975,7 +975,7 @@ html, body {
 /* iPad / Tablets Viewport (768px - 1100px, landscape & portrait) */
 @media (min-width: 768px) and (max-width: 1100px) {
   .hero-typography-backdrop {
-    top: clamp(80px, 10vh, 125px);
+    top: clamp(115px, 14vh, 160px);
     transform: none;
   }
 
@@ -1029,7 +1029,7 @@ html, body {
   }
 
   .hero-typography-backdrop {
-    top: clamp(70px, 9vh, 95px);
+    top: clamp(95px, 12vh, 125px);
     transform: none;
   }
 
