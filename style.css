@@ -2,6 +2,39 @@
    XGEARUP BY NINA - ARCHITECTURAL DESIGN SYSTEM & STYLING
    =================================================================== */
 
+@font-face {
+  font-family: 'Inner';
+  src: url('/fonts/Inner.otf') format('opentype'),
+       url('/fonts/Inner.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Grift';
+  src: url('/fonts/Grift-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Grift';
+  src: url('/fonts/Grift-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Grift';
+  src: url('/fonts/Grift-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg-dark: #060709;
   --bg-panel: rgba(12, 14, 19, 0.75);
@@ -649,6 +682,64 @@ html, body {
   justify-content: center;
 }
 
+/* Typography Backdrop behind alpha video */
+.hero-typography-backdrop {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  text-align: center;
+  transform: translateY(-24px);
+}
+
+.title-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Inner', sans-serif;
+  line-height: 0.88;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  text-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.95),
+    0 4px 8px rgba(0, 0, 0, 0.9);
+}
+
+.word-print {
+  font-size: clamp(68px, 12.5vw, 180px);
+  font-weight: 900;
+  text-transform: uppercase;
+  display: block;
+}
+
+.word-anygear {
+  font-size: clamp(52px, 10vw, 144px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  display: block;
+  margin-top: 4px;
+}
+
+.title-grift {
+  font-family: 'Grift', sans-serif;
+  font-weight: 700;
+  font-size: clamp(12px, 2.2vw, 30px);
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  margin-top: 26px;
+  padding-left: 0.42em; /* Centers the text properly with trailing letter-spacing */
+  text-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.9),
+    0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
 /* 3 Product Videos Stacked with position: absolute */
 .product-video-stage {
   position: absolute;
@@ -888,6 +979,25 @@ html, body {
   .header-logo-svg {
     height: 48px;
     max-width: 170px;
+  }
+
+  .hero-typography-backdrop {
+    transform: translateY(-38px);
+  }
+
+  .word-print {
+    font-size: clamp(46px, 14vw, 82px);
+  }
+
+  .word-anygear {
+    font-size: clamp(36px, 11vw, 66px);
+  }
+
+  .title-grift {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    padding-left: 0.28em;
+    margin-top: 16px;
   }
 
   .color-controller {
