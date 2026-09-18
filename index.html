@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XgearUp by Nina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- BACKGROUND SYSTEM -->
+  <div id="bg-container" class="bg-container">
+    <!-- Looping Background Video (Starts from frame 067 loop) -->
+    <video id="bg-video" class="bg-video" loop muted playsinline preload="auto">
+      <source src="/videos/bg-loop.mp4" type="video/mp4">
+      <source src="/videos/bg-loop.webm" type="video/webm">
+    </video>
+
+    <!-- Canvas for Initial JPG Animation (Frames 024 to 067) -->
+    <canvas id="bg-canvas" class="bg-canvas"></canvas>
+
+    <!-- Atmospheric Overlays -->
+    <div class="bg-overlay"></div>
+    <div class="bg-grid-lines"></div>
+  </div>
+
+  <!-- 3D PRINTING MACHINE LOADER -->
+  <div id="printer-loader" class="printer-loader">
+    <!-- Printer Gantry Frame & Machine Rails -->
+    <div class="printer-cage">
+      <!-- Top Rail / Gantry Beam -->
+      <div class="gantry-rail top-rail">
+        <div class="stepper-motor left">
+          <span class="stepper-pulse"></span>
+        </div>
+        <div class="rail-belt"></div>
+        <div class="stepper-motor right">
+          <span class="stepper-pulse"></span>
+        </div>
+      </div>
+
+      <!-- Vertical Z-Rods -->
+      <div class="z-rod z-rod-left">
+        <div class="leadscrew"></div>
+      </div>
+      <div class="z-rod z-rod-right">
+        <div class="leadscrew"></div>
+      </div>
+
+      <!-- Moveable Carriage & Extruder / Laser Assembly -->
+      <div id="extruder-assembly" class="extruder-assembly">
+        <div class="carriage-beam"></div>
+        <div id="print-head" class="print-head">
+          <div class="print-head-casing">
+            <div class="fan-grill">
+              <div class="fan-blades"></div>
+            </div>
+            <div class="status-diode"></div>
+          </div>
+          <div class="nozzle-block">
+            <div class="hotend-heatsink"></div>
+            <div class="brass-nozzle"></div>
+            <!-- Laser / Thermal Focal Point -->
+            <div id="laser-beam" class="laser-beam"></div>
+            <div id="laser-glow" class="laser-glow"></div>
+            <div id="laser-sparks" class="laser-sparks"></div>
+          </div>
+        </div>
+        <!-- Active Slicing Scanline across print bed -->
+        <div id="laser-scanline" class="laser-scanline"></div>
+      </div>
+
+      <!-- Print Bed / Build Platform -->
+      <div class="print-bed">
+        <div class="bed-surface">
+          <div class="bed-grid"></div>
+          <div class="bed-markers">
+            <span class="marker top-left">+</span>
+            <span class="marker top-right">+</span>
+            <span class="marker bottom-left">X:000 Y:000</span>
+            <span class="marker bottom-right">250 x 210 mm</span>
+          </div>
+
+          <!-- The SVG Logo being materialized layer-by-layer -->
+          <div class="logo-print-wrapper">
+            <!-- Ghost / Blueprint Silhouette -->
+            <div id="logo-ghost" class="logo-layer logo-ghost"></div>
+            <!-- Printed Realized Logo (Clipped dynamically by print height) -->
+            <div id="logo-printed" class="logo-layer logo-printed"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Machine Telemetry HUD -->
+    <div class="loader-hud">
+      <div class="hud-top">
+        <div class="hud-brand">
+          <span class="hud-badge">SYSTEM // SLA-3D</span>
+          <span class="hud-sub">ADDITIVE MANUFACTURING MATRIX</span>
+        </div>
+        <div class="hud-status">
+          <div id="loader-matrix-orb" class="loader-matrix-orb" title="Rare UI Matrix Orb"></div>
+          <span class="hud-dot pulsing"></span>
+          <span id="hud-status-text">INITIALIZING CALIBRATION...</span>
+        </div>
+      </div>
+
+      <!-- Bottom HUD readout with temperature & progress -->
+      <div class="hud-bottom">
+        <div class="hud-metrics">
+          <div class="metric">
+            <span class="metric-label">EXTRUDER</span>
+            <span id="extruder-temp" class="metric-val">215.4°C</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">BED TEMP</span>
+            <span id="bed-temp" class="metric-val">60.0°C</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Z-LAYER</span>
+            <span id="layer-val" class="metric-val">001 / 067</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">VELOCITY</span>
+            <span class="metric-val">240 mm/s</span>
+          </div>
+        </div>
+
+        <div class="hud-progress-block">
+          <div class="progress-bar-wrapper">
+            <div id="hud-progress-fill" class="progress-fill"></div>
+          </div>
+          <div class="progress-percentage">
+            <span id="hud-percent">0</span>%
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN APP INTERFACE -->
+  <main id="app" class="app">
+    <!-- TOP STATUS BAR / HEADER -->
+    <header class="app-header">
+      <div class="brand-title">
+        <span class="brand-name">XGEARUP</span>
+        <span class="brand-by">by Nina</span>
+      </div>
+
+      <!-- Loop Sync Telemetry Marker -->
+      <div id="loop-marker" class="loop-marker">
+        <span class="marker-pulse"></span>
+        <span id="marker-status" class="marker-text">BG SYNC: PREPARING INTRO</span>
+      </div>
+
+      <div class="header-actions">
+        <button id="btn-replay" class="btn-replay" title="Reiniciar animación inicial">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 4v6h6M23 20v-6h-6"/>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+          </svg>
+          <span>REPLAY INTRO</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO SECTION WITH 3 PRODUCT VIDEOS IN ABSOLUTE POSITION & RARE UI FLUID ORB -->
+    <section class="hero-section">
+      <div class="hero-center-stage">
+        <!-- Rare UI Fluid Orb (WebGL Liquid Shader Aura behind product) -->
+        <div id="hero-fluid-orb" class="hero-fluid-orb" data-slot="fluid-orb"></div>
+
+        <!-- 3 Product Videos Stacked with position: absolute -->
+        <div class="product-video-stage">
+          <!-- Video 1: Stealth Carbon / Olive (Full Alpha Channel) -->
+          <video 
+            id="video-prod-0" 
+            class="product-video active" 
+            playsinline 
+            loop 
+            muted 
+            preload="auto"
+          >
+            <source src="/videos/product-stealth.mov" type="video/quicktime">
+            <source src="/videos/product-stealth.mov" type='video/mp4; codecs="hvc1"'>
+            <source src="/videos/product-stealth.webm" type="video/webm">
+          </video>
+
+          <!-- Video 2: Cyber Emerald Green (Full Alpha Channel) -->
+          <video 
+            id="video-prod-1" 
+            class="product-video" 
+            playsinline 
+            loop 
+            muted 
+            preload="auto"
+          >
+            <source src="/videos/product-emerald.mov" type="video/quicktime">
+            <source src="/videos/product-emerald.mov" type='video/mp4; codecs="hvc1"'>
+            <source src="/videos/product-emerald.webm" type="video/webm">
+          </video>
+
+          <!-- Video 3: Neon Magenta / Rose (Full Alpha Channel) -->
+          <video 
+            id="video-prod-2" 
+            class="product-video" 
+            playsinline 
+            loop 
+            muted 
+            preload="auto"
+          >
+            <source src="/videos/product-magenta.mov" type="video/quicktime">
+            <source src="/videos/product-magenta.mov" type='video/mp4; codecs="hvc1"'>
+            <source src="/videos/product-magenta.webm" type="video/webm">
+          </video>
+        </div>
+
+        <!-- Dynamic Product Sub-info / Badge -->
+        <div class="product-info-tag">
+          <span class="info-label">EDITION</span>
+          <span id="active-color-name" class="info-val">STEALTH CARBON</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOTTOM CONTROLLER: 3 BUTTONS TO SWITCH COLORS -->
+    <footer class="color-controller">
+      <div class="controller-glass-pill">
+        <div class="controller-header">
+          <span class="controller-title">COLOR MATRIX</span>
+          <span class="controller-hint">SELECT VARIANT [1-3]</span>
+        </div>
+
+        <div class="color-buttons-row">
+          <!-- Button 1: Stealth Carbon / Olive -->
+          <button class="color-btn active" data-index="0" data-color="#5c6c39" data-name="STEALTH CARBON">
+            <span class="btn-swatch swatch-stealth"></span>
+            <div class="btn-text">
+              <span class="btn-index">01</span>
+              <span class="btn-label">STEALTH</span>
+            </div>
+            <span class="btn-glow"></span>
+          </button>
+
+          <!-- Button 2: Cyber Emerald -->
+          <button class="color-btn" data-index="1" data-color="#3b7a34" data-name="CYBER EMERALD">
+            <span class="btn-swatch swatch-emerald"></span>
+            <div class="btn-text">
+              <span class="btn-index">02</span>
+              <span class="btn-label">EMERALD</span>
+            </div>
+            <span class="btn-glow"></span>
+          </button>
+
+          <!-- Button 3: Neon Magenta -->
+          <button class="color-btn" data-index="2" data-color="#f200a0" data-name="NEON MAGENTA">
+            <span class="btn-swatch swatch-magenta"></span>
+            <div class="btn-text">
+              <span class="btn-index">03</span>
+              <span class="btn-label">MAGENTA</span>
+            </div>
+            <span class="btn-glow"></span>
+          </button>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
