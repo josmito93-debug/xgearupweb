@@ -88,11 +88,33 @@ async function init() {
 function syncTypographyWidth() {
   const anyGear = document.querySelector('.word-anygear');
   const titleGrift = document.querySelector('.title-grift');
-  if (anyGear && titleGrift) {
-    const w = anyGear.getBoundingClientRect().width;
-    if (w > 0) {
-      titleGrift.style.width = `${w}px`;
-    }
+  if (!anyGear || !titleGrift) return;
+
+  const targetWidth = anyGear.getBoundingClientRect().width;
+  if (targetWidth <= 0) return;
+
+  titleGrift.style.width = `${targetWidth}px`;
+
+  // Measure all individual letters across the 4 words
+  const words = Array.from(titleGrift.querySelectorAll('.grift-word'));
+  let totalLetterWidth = 0;
+  words.forEach(w => {
+    Array.from(w.children).forEach(ch => {
+      totalLetterWidth += ch.getBoundingClientRect().width;
+    });
+  });
+
+  const available = targetWidth - totalLetterWidth;
+  if (available > 0) {
+    // 9 letter gaps inside words, 3 word gaps between words
+    // Word gap is 2.6x the letter gap so the 4 words are distinctly clear!
+    const lg = Math.max(1, available / (9 + 3 * 2.6));
+    const wg = lg * 2.6;
+
+    titleGrift.style.columnGap = `${wg}px`;
+    words.forEach(w => {
+      w.style.columnGap = `${lg}px`;
+    });
   }
 }
 

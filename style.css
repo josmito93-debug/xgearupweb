@@ -751,7 +751,12 @@ html, body {
     0 2px 4px rgba(0, 0, 0, 0.9);
 }
 
-.title-grift span {
+.grift-word {
+  display: inline-flex;
+  align-items: center;
+}
+
+.grift-word span {
   display: inline-block;
   line-height: 1;
   text-align: center;
