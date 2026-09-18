@@ -11,9 +11,33 @@ const END_FRAME = 67; // The user-marked frame: "desde aqui comienza el; lopp.jp
 const FPS = 24;
 
 const COLOR_VARIANTS = [
-  { index: 0, name: "STEALTH CARBON", hex: "#5c6c39", id: "video-prod-0" },
-  { index: 1, name: "CYBER EMERALD", hex: "#3b7a34", id: "video-prod-1" },
-  { index: 2, name: "NEON MAGENTA", hex: "#f200a0", id: "video-prod-2" }
+  { 
+    index: 0, 
+    name: "STEALTH CARBON", 
+    hex: "#5c6c39", 
+    id: "video-prod-0",
+    from: "#5c6c39",
+    to: "#384421",
+    glow: "rgba(92, 108, 57, 0.45)"
+  },
+  { 
+    index: 1, 
+    name: "CYBER EMERALD", 
+    hex: "#3b7a34", 
+    id: "video-prod-1",
+    from: "#3b7a34",
+    to: "#224c1e",
+    glow: "rgba(59, 122, 52, 0.45)"
+  },
+  { 
+    index: 2, 
+    name: "NEON MAGENTA", 
+    hex: "#f200a0", 
+    id: "video-prod-2",
+    from: "#f200a0",
+    to: "#a00069",
+    glow: "rgba(242, 0, 160, 0.45)"
+  }
 ];
 
 let activeVariantIndex = 0;
@@ -422,6 +446,14 @@ function switchColorVariant(targetIndex) {
       duration: 0.45,
       ease: "power2.out"
     });
+  }
+
+  // Update Dynamic Glow on BUY Button
+  const btnBuy = document.getElementById('btn-buy-peptides');
+  if (btnBuy && targetData.from) {
+    btnBuy.style.setProperty('--active-accent-from', targetData.from);
+    btnBuy.style.setProperty('--active-accent-to', targetData.to);
+    btnBuy.style.setProperty('--active-accent-glow', targetData.glow);
   }
 
   // Update Buttons
