@@ -742,7 +742,7 @@ html, body {
   align-items: center;
   font-family: 'Grift', sans-serif;
   font-weight: 700;
-  font-size: clamp(12px, 2.2vw, 30px);
+  font-size: clamp(14px, 2.3vw, 32px);
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.92);
   margin-top: 24px;
@@ -751,13 +751,10 @@ html, body {
     0 2px 4px rgba(0, 0, 0, 0.9);
 }
 
-.title-grift .char {
+.title-grift span {
   display: inline-block;
   line-height: 1;
-}
-
-.title-grift .word-spacer {
-  flex-grow: 2.2;
+  text-align: center;
 }
 
 /* 3 Product Videos Stacked with position: absolute */
@@ -1014,8 +1011,8 @@ html, body {
   }
 
   .title-grift {
-    font-size: 11px;
-    margin-top: 16px;
+    font-size: clamp(10px, 3vw, 14px);
+    margin-top: 14px;
   }
 
   .color-controller {
