@@ -839,7 +839,7 @@ html, body {
 /* Hero Action CTAs below Alpha Video */
 .hero-cta-group {
   position: absolute;
-  top: clamp(66%, 69vh, 74%);
+  bottom: calc(max(32px, env(safe-area-inset-bottom) + 20px) + 74px + 18px);
   left: 0;
   right: 0;
   display: flex;
@@ -868,6 +868,7 @@ html, body {
   transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
   user-select: none;
+  white-space: nowrap;
 }
 
 /* Secondary CTA: VIEW PRODUCTS */
@@ -1151,6 +1152,11 @@ html, body {
     margin-top: 14px;
   }
 
+  .hero-cta-group {
+    bottom: calc(max(40px, env(safe-area-inset-bottom) + 24px) + 74px + 18px);
+    gap: 12px;
+  }
+
   .color-controller {
     bottom: max(40px, env(safe-area-inset-bottom) + 24px);
     padding: 0 20px;
@@ -1203,6 +1209,28 @@ html, body {
   .title-grift {
     font-size: clamp(9px, 2.4vw, 12px);
     margin-top: 12px;
+  }
+
+  .hero-cta-group {
+    bottom: calc(max(24px, env(safe-area-inset-bottom) + 16px) + 64px + 14px);
+    gap: 8px;
+    padding: 0 16px;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .hero-btn {
+    flex: 1;
+    padding: 11px 8px;
+    font-size: 9.5px;
+    letter-spacing: 0.07em;
+    justify-content: center;
+  }
+
+  .btn-icon-arrow,
+  .btn-icon-sparkle {
+    width: 11px;
+    height: 11px;
   }
 
   .color-controller {
