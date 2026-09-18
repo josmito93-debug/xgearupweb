@@ -615,9 +615,9 @@ html, body {
 }
 
 .header-logo-svg {
-  height: 46px;
+  height: 52px;
   width: auto;
-  max-width: 140px;
+  max-width: 180px;
   object-fit: contain;
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
@@ -926,7 +926,8 @@ html, body {
   }
 
   .header-logo-svg {
-    height: 36px;
+    height: 48px;
+    max-width: 170px;
   }
 
   .loop-marker {
