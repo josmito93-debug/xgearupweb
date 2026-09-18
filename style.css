@@ -61,6 +61,7 @@
 html, body {
   width: 100%;
   height: 100%;
+  height: 100dvh;
   overflow: hidden;
   background-color: var(--bg-dark);
   color: var(--brand-light);
@@ -79,6 +80,7 @@ html, body {
   inset: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   z-index: 1;
   background-color: #000000;
@@ -617,6 +619,7 @@ html, body {
   z-index: 10;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -668,6 +671,7 @@ html, body {
   flex: 1;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -685,16 +689,18 @@ html, body {
 /* Typography Backdrop behind alpha video */
 .hero-typography-backdrop {
   position: absolute;
-  inset: 0;
+  top: clamp(80px, 11.5vh, 140px);
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   z-index: 1;
   pointer-events: none;
   user-select: none;
   text-align: center;
-  transform: translateY(-24px);
+  transform: none;
 }
 
 .headline-block {
@@ -793,7 +799,7 @@ html, body {
 /* Bottom Controller: 3 Buttons to Switch Color */
 .color-controller {
   position: absolute;
-  bottom: 48px;
+  bottom: max(32px, env(safe-area-inset-bottom) + 20px);
   left: 0;
   right: 0;
   display: flex;
@@ -966,14 +972,28 @@ html, body {
    RESPONSIVE DESIGN (IPAD & MOBILE)
    =================================================================== */
 
-/* iPad / Tablets Viewport (768px - 1024px, landscape & portrait) */
-@media (max-width: 1024px) {
+/* iPad / Tablets Viewport (768px - 1100px, landscape & portrait) */
+@media (min-width: 768px) and (max-width: 1100px) {
   .hero-typography-backdrop {
-    transform: translateY(-64px); /* Lifted on iPad landscape */
+    top: clamp(80px, 10vh, 125px);
+    transform: none;
+  }
+
+  .word-print {
+    font-size: clamp(56px, 10vw, 120px);
+  }
+
+  .word-anygear {
+    font-size: clamp(62px, 11vw, 135px);
+  }
+
+  .title-grift {
+    font-size: clamp(12px, 2vw, 22px);
+    margin-top: 18px;
   }
 
   .color-controller {
-    bottom: 84px; /* Raised inside the hero so it is always completely visible */
+    bottom: max(40px, env(safe-area-inset-bottom) + 24px);
     padding: 0 20px;
   }
 
@@ -1009,24 +1029,25 @@ html, body {
   }
 
   .hero-typography-backdrop {
-    transform: translateY(-110px);
+    top: clamp(70px, 9vh, 95px);
+    transform: none;
   }
 
   .word-print {
-    font-size: clamp(46px, 14vw, 82px);
+    font-size: clamp(44px, 13vw, 76px);
   }
 
   .word-anygear {
-    font-size: clamp(48px, 14.5vw, 88px);
+    font-size: clamp(48px, 14vw, 84px);
   }
 
   .title-grift {
-    font-size: clamp(10px, 3vw, 14px);
+    font-size: clamp(10px, 2.8vw, 14px);
     margin-top: 14px;
   }
 
   .color-controller {
-    bottom: 64px; /* Lifted on mobile inside hero above safe area */
+    bottom: max(24px, env(safe-area-inset-bottom) + 16px);
     padding: 0 16px;
   }
 
@@ -1050,33 +1071,5 @@ html, body {
   .btn-label {
     display: inline-block;
     font-size: 10px;
-  }
-}
-
-/* iPad in Vertical / Portrait Orientation (768px - 1100px) */
-@media (min-width: 768px) and (max-width: 1100px) and (orientation: portrait),
-       (min-height: 900px) and (min-width: 768px) and (max-width: 1100px) {
-  .hero-typography-backdrop {
-    transform: translateY(clamp(-360px, -30vh, -280px)) !important;
-  }
-
-  .word-anygear {
-    font-size: clamp(68px, 14vw, 150px);
-  }
-
-  .color-controller {
-    bottom: 100px;
-  }
-}
-
-/* iPad Pro 12.9" / 13" in Vertical / Portrait Orientation */
-@media (min-height: 1200px) and (min-width: 768px) and (max-width: 1100px) and (orientation: portrait),
-       (min-height: 1200px) and (max-width: 1024px) {
-  .hero-typography-backdrop {
-    transform: translateY(-440px) !important; /* Raised way up on iPad 13" vertical */
-  }
-
-  .color-controller {
-    bottom: 120px;
   }
 }
