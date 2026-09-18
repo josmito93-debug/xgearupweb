@@ -969,7 +969,7 @@ html, body {
 /* iPad / Tablets Viewport (768px - 1024px, landscape & portrait) */
 @media (max-width: 1024px) {
   .hero-typography-backdrop {
-    transform: translateY(-64px); /* Lifted on iPad */
+    transform: translateY(-64px); /* Lifted on iPad landscape */
   }
 
   .color-controller {
@@ -979,6 +979,17 @@ html, body {
 
   .controller-glass-pill {
     padding: 12px 18px;
+  }
+}
+
+/* iPad in Vertical / Portrait Orientation */
+@media (min-width: 600px) and (max-width: 1100px) and (orientation: portrait) {
+  .hero-typography-backdrop {
+    transform: translateY(-160px); /* Significantly raised in iPad vertical mode */
+  }
+
+  .color-controller {
+    bottom: 96px;
   }
 }
 
