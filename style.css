@@ -968,6 +968,10 @@ html, body {
 
 /* iPad / Tablets Viewport (768px - 1024px, landscape & portrait) */
 @media (max-width: 1024px) {
+  .hero-typography-backdrop {
+    transform: translateY(-64px); /* Lifted on iPad */
+  }
+
   .color-controller {
     bottom: 84px; /* Raised inside the hero so it is always completely visible */
     padding: 0 20px;
@@ -1004,7 +1008,7 @@ html, body {
   }
 
   .hero-typography-backdrop {
-    transform: translateY(-80px);
+    transform: translateY(-110px);
   }
 
   .word-print {
