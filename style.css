@@ -1057,14 +1057,26 @@ html, body {
 @media (min-width: 768px) and (max-width: 1100px) and (orientation: portrait),
        (min-height: 900px) and (min-width: 768px) and (max-width: 1100px) {
   .hero-typography-backdrop {
-    transform: translateY(-270px) !important; /* Raised bastantísimo on iPad vertical */
+    transform: translateY(clamp(-360px, -30vh, -280px)) !important;
   }
 
   .word-anygear {
-    font-size: clamp(68px, 14vw, 145px);
+    font-size: clamp(68px, 14vw, 150px);
   }
 
   .color-controller {
     bottom: 100px;
+  }
+}
+
+/* iPad Pro 12.9" / 13" in Vertical / Portrait Orientation */
+@media (min-height: 1200px) and (min-width: 768px) and (max-width: 1100px) and (orientation: portrait),
+       (min-height: 1200px) and (max-width: 1024px) {
+  .hero-typography-backdrop {
+    transform: translateY(-440px) !important; /* Raised way up on iPad 13" vertical */
+  }
+
+  .color-controller {
+    bottom: 120px;
   }
 }
