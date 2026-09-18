@@ -76,6 +76,24 @@ async function init() {
 
   // 6. Setup UI Event Listeners
   setupEventListeners();
+
+  // 7. Synchronize typography width (YOU CAN IMAGE OF == ANY-GEAR)
+  syncTypographyWidth();
+  window.addEventListener('resize', syncTypographyWidth);
+  if (document.fonts) {
+    document.fonts.ready.then(syncTypographyWidth);
+  }
+}
+
+function syncTypographyWidth() {
+  const anyGear = document.querySelector('.word-anygear');
+  const titleGrift = document.querySelector('.title-grift');
+  if (anyGear && titleGrift) {
+    const w = anyGear.getBoundingClientRect().width;
+    if (w > 0) {
+      titleGrift.style.width = `${w}px`;
+    }
+  }
 }
 
 function setupRareUI() {
@@ -341,6 +359,7 @@ function onJpgAnimationComplete() {
     duration: 0.8,
     ease: "power2.out",
     onStart: () => {
+      syncTypographyWidth();
       // Start product videos synchronized
       productVideos.forEach(v => {
         v.currentTime = 0;
