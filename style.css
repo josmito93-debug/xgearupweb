@@ -629,53 +629,6 @@ html, body {
   filter: drop-shadow(0 0 16px rgba(242, 0, 160, 0.6));
 }
 
-.loop-marker {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.7);
-  background: rgba(14, 17, 24, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 6px 14px;
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-}
-
-.marker-pulse {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #00ff88;
-  box-shadow: 0 0 8px #00ff88;
-  animation: pulse-dot 1.2s infinite alternate;
-}
-
-.btn-replay {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.75);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  padding: 8px 14px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(8px);
-}
-
-.btn-replay:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-
 /* Hero Section with 3 Absolute Videos */
 .hero-section {
   position: relative;
@@ -722,35 +675,6 @@ html, body {
 
 .product-video.active {
   opacity: 1;
-}
-
-.product-info-tag {
-  position: absolute;
-  top: 110px;
-  left: 36px;
-  font-family: var(--font-mono);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  background: rgba(8, 10, 14, 0.65);
-  backdrop-filter: blur(12px);
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  pointer-events: none;
-}
-
-.info-label {
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.info-val {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--brand-light);
 }
 
 /* Bottom Controller: 3 Buttons to Switch Color */
@@ -928,15 +852,6 @@ html, body {
   .header-logo-svg {
     height: 48px;
     max-width: 170px;
-  }
-
-  .loop-marker {
-    display: none;
-  }
-
-  .product-info-tag {
-    top: 80px;
-    left: 20px;
   }
 
   .color-controller {

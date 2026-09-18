@@ -281,7 +281,7 @@ function onPrinterComplete() {
 
 function startJpgIntroAnimation() {
   isIntroPlaying = true;
-  markerStatus.textContent = "INITIALIZING JPG SEQUENCE [024-067]...";
+  if (markerStatus) markerStatus.textContent = "INITIALIZING JPG SEQUENCE [024-067]...";
 
   // Ensure canvas is visible and video is prepared underneath
   bgCanvas.classList.remove('fade-out');
@@ -302,7 +302,7 @@ function startJpgIntroAnimation() {
       if (img) {
         drawFrame(img);
         const frameNum = START_FRAME + idx;
-        markerStatus.textContent = `PLAYING JPG FRAME: ${String(frameNum).padStart(3, '0')} / 067`;
+        if (markerStatus) markerStatus.textContent = `PLAYING JPG FRAME: ${String(frameNum).padStart(3, '0')} / 067`;
       }
     },
     onComplete: () => {
@@ -317,7 +317,9 @@ function onJpgAnimationComplete() {
   isLoopLocked = true;
 
   // Mark the loop handover point explicitly
-  markerStatus.innerHTML = "BG LOOP: <span style='color:#00ff88;'>LOCKED @ FRAME 067</span> (CONTINUOUS)";
+  if (markerStatus) {
+    markerStatus.innerHTML = "BG LOOP: <span style='color:#00ff88;'>LOCKED @ FRAME 067</span> (CONTINUOUS)";
+  }
 
   // Start playing the looping background video
   bgVideo.currentTime = 0;
