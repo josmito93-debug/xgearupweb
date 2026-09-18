@@ -680,7 +680,7 @@ html, body {
 /* Bottom Controller: 3 Buttons to Switch Color */
 .color-controller {
   position: absolute;
-  bottom: 36px;
+  bottom: 48px;
   left: 0;
   right: 0;
   display: flex;
@@ -692,18 +692,26 @@ html, body {
 
 .controller-glass-pill {
   pointer-events: auto;
-  background: rgba(10, 12, 16, 0.82);
-  backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  padding: 12px 18px;
+  position: relative;
+  /* Dark titanium gradient (dark gray to pure black) with gradient border */
+  background: 
+    linear-gradient(165deg, #1c212a 0%, #101319 45%, #07080b 100%) padding-box,
+    linear-gradient(145deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.04) 50%, rgba(255, 255, 255, 0.16) 100%) border-box;
+  border: 1px solid transparent;
+  border-radius: 14px; /* Apple squircle aesthetic - not too round */
+  padding: 12px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  backdrop-filter: blur(28px) saturate(190%);
+  /* Multi-layered inner & outer shadow to make it pop */
   box-shadow: 
-    0 16px 48px rgba(0, 0, 0, 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 24px 60px -12px rgba(0, 0, 0, 0.95),
+    0 12px 28px -6px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.22),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.85);
 }
 
 .controller-header {
@@ -711,68 +719,84 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
+  gap: 28px;
   font-family: var(--font-mono);
   padding: 0 4px;
 }
 
 .controller-title {
-  font-size: 9px;
+  font-size: 9.5px;
   font-weight: 700;
-  letter-spacing: 0.15em;
-  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
 }
 
 .controller-hint {
   font-size: 9px;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 500;
 }
 
 .color-buttons-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .color-btn {
   position: relative;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 8px 16px;
+  background: 
+    linear-gradient(180deg, #1a1e26 0%, #0d1015 100%) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%) border-box;
+  border: 1px solid transparent;
+  border-radius: 9px; /* Apple style card radius */
+  padding: 9px 16px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   cursor: pointer;
   outline: none;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.7);
   font-family: var(--font-mono);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
 .color-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: 
+    linear-gradient(180deg, #242a37 0%, #13171f 100%) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.06) 100%) border-box;
   color: #ffffff;
   transform: translateY(-2px);
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .color-btn.active {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: 
+    linear-gradient(180deg, #272f3c 0%, #141820 100%) padding-box,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.1) 100%) border-box;
   color: #ffffff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.7),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
 }
 
 .btn-swatch {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 12px;
+  height: 12px;
+  border-radius: 4px; /* Apple squircle swatch */
+  border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 0 10px currentColor;
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
 
 .swatch-stealth {
@@ -791,7 +815,7 @@ html, body {
 }
 
 .color-btn.active .btn-swatch {
-  transform: scale(1.25);
+  transform: scale(1.2);
 }
 
 .btn-text {
@@ -802,8 +826,8 @@ html, body {
 
 .btn-index {
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.35);
-  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
 }
 
 .btn-label {
@@ -822,12 +846,24 @@ html, body {
 
 .color-btn.active .btn-glow {
   opacity: 1;
-  box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.12);
 }
 
 /* ===================================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN (IPAD & MOBILE)
    =================================================================== */
+
+/* iPad / Tablets Viewport (768px - 1024px, landscape & portrait) */
+@media (max-width: 1024px) {
+  .color-controller {
+    bottom: 84px; /* Raised inside the hero so it is always completely visible */
+    padding: 0 20px;
+  }
+
+  .controller-glass-pill {
+    padding: 12px 18px;
+  }
+}
 
 @media (max-width: 768px) {
   .printer-cage {
@@ -855,12 +891,13 @@ html, body {
   }
 
   .color-controller {
-    bottom: 20px;
+    bottom: 64px; /* Lifted on mobile inside hero above safe area */
     padding: 0 16px;
   }
 
   .controller-glass-pill {
     width: 100%;
+    max-width: 380px;
   }
 
   .color-buttons-row {
@@ -870,12 +907,13 @@ html, body {
 
   .color-btn {
     flex: 1;
-    padding: 8px 10px;
+    padding: 9px 8px;
     justify-content: center;
     gap: 6px;
   }
 
   .btn-label {
-    display: none;
+    display: inline-block;
+    font-size: 10px;
   }
 }
