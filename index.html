@@ -142,14 +142,46 @@
   <!-- MAIN APP INTERFACE -->
   <main id="app" class="app">
     <!-- TOP STATUS BAR / HEADER -->
-    <header class="app-header">
+    <header class="app-header" id="app-header">
       <div class="brand-logo-wrapper">
-        <img src="/xgearup.svg" alt="XgearUp by Nina" class="header-logo-svg">
+        <a href="#hero" class="brand-logo-link" title="XgearUp by Nina">
+          <img src="/xgearup.svg" alt="XgearUp by Nina" class="header-logo-svg">
+        </a>
+      </div>
+
+      <!-- Navigation Bar -->
+      <nav class="header-nav">
+        <a href="#products" class="header-nav-link"><span>CAJAS 4P / 6P / 8P</span></a>
+        <a href="#accessories" class="header-nav-link"><span>UP-SALES & EXTRAS</span></a>
+        <a href="#specs" class="header-nav-link"><span>INGENIERÍA 3D</span></a>
+      </nav>
+
+      <!-- Right Header Actions (Telemetry & Live Cart) -->
+      <div class="header-actions">
+        <div class="header-status-indicator">
+          <span class="hud-dot pulsing"></span>
+          <span class="status-txt">SISTEMA ACTIVO</span>
+        </div>
+
+        <button id="cart-toggle-btn" class="header-cart-btn" aria-label="Ver Carrito">
+          <div class="cart-icon-container">
+            <svg class="cart-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span id="cart-count-badge" class="cart-count-badge">0</span>
+          </div>
+          <div class="cart-text-container">
+            <span class="cart-text-label">CARRITO</span>
+            <span id="cart-total-badge" class="cart-total-badge">$0.00</span>
+          </div>
+        </button>
       </div>
     </header>
 
     <!-- HERO SECTION WITH 3 PRODUCT VIDEOS IN ABSOLUTE POSITION -->
-    <section class="hero-section">
+    <section class="hero-section" id="hero">
       <div class="hero-center-stage">
         <!-- Typography Backdrop behind alpha video -->
         <div class="hero-typography-backdrop" aria-hidden="true">
@@ -221,24 +253,33 @@
         <!-- Hero CTAs: View Products & Buy My Peptides Packet -->
         <div class="hero-cta-group">
           <a href="#products" class="hero-btn btn-secondary" id="btn-view-products">
-            <span>VIEW PRODUCTS</span>
+            <span>VER CATÁLOGO</span>
             <svg class="btn-icon-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </a>
-          <a href="#buy" class="hero-btn btn-primary" id="btn-buy-peptides">
+          <a href="#products" class="hero-btn btn-primary" id="btn-buy-peptides">
             <span class="btn-shimmer"></span>
-            <span>BUY MY PEPTIDES PACKET</span>
+            <span>COMPRAR CAJA DE PÉPTIDOS</span>
             <svg class="btn-icon-sparkle" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/>
             </svg>
           </a>
         </div>
+
+        <!-- Scroll down indicator -->
+        <a href="#products" class="hero-scroll-hint" id="hero-scroll-hint">
+          <span class="scroll-mouse-wheel"></span>
+          <span class="scroll-hint-label">EXPLORAR ARSENAL Y UP-SALES</span>
+          <svg class="scroll-hint-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </a>
       </div>
     </section>
 
     <!-- BOTTOM CONTROLLER: 3 BUTTONS TO SWITCH COLORS -->
-    <footer class="color-controller">
+    <div class="color-controller">
       <div class="controller-glass-pill">
         <div class="controller-header">
           <span class="controller-title">COLOR MATRIX</span>
@@ -277,7 +318,737 @@
           </button>
         </div>
       </div>
+    </div>
+
+    <!-- ===================================================================
+         ECOMMERCE SECTION 1: PRODUCT CATALOG (CAJAS DE PÉPTIDOS 4P, 6P, 8P)
+         =================================================================== -->
+    <section class="store-section" id="products">
+      <div class="section-container">
+        <!-- Section Header -->
+        <div class="section-header-block">
+          <div class="section-badge">
+            <span class="badge-diode"></span>
+            <span>CATÁLOGO TÁCTICO // FABRICACIÓN ADITIVA</span>
+          </div>
+          <h2 class="section-title">ESTUCHES DE PROTECCIÓN PARA PÉPTIDOS</h2>
+          <p class="section-desc">
+            Diseñados para transporte seguro, protección contra impactos mecánicos, estanqueidad y aislamiento térmico de frascos y viales de péptidos en polímeros de grado laboratorio.
+          </p>
+        </div>
+
+        <!-- Products Grid (3 Columns) -->
+        <div class="products-grid">
+
+          <!-- PRODUCT CARD 1: CAJA 4P ($24.95) -->
+          <article class="product-card" data-product-id="caja-4p">
+            <div class="product-card-inner">
+              <div class="product-card-glow"></div>
+              
+              <!-- Card Header & Badge -->
+              <div class="product-card-top">
+                <span class="product-tag tag-standard">COMPACT CUBE</span>
+                <span class="product-stock-tag in-stock">
+                  <span class="dot-live"></span> EN STOCK
+                </span>
+              </div>
+
+              <!-- Product Media Display -->
+              <div class="product-image-stage">
+                <img 
+                  src="/products/box-4p.png" 
+                  alt="Caja 4 Peptides Tactical Case" 
+                  class="product-card-img"
+                  loading="lazy"
+                >
+                <div class="product-grid-backdrop"></div>
+                <div class="product-capacity-badge">4 VIALES</div>
+              </div>
+
+              <!-- Product Details -->
+              <div class="product-info-block">
+                <h3 class="product-title">Caja 4 Peptides (4P)</h3>
+                <p class="product-subtitle">Chasis cúbico compacto de alta densidad con cierre mecánico de presión rápida y amortiguación interna para 4 frascos.</p>
+
+                <!-- Feature Pills -->
+                <div class="product-features-list">
+                  <span class="feature-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Capacidad: 4 viales
+                  </span>
+                  <span class="feature-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Sello hermético O-Ring
+                  </span>
+                  <span class="feature-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Cierre Hex-Lock
+                  </span>
+                </div>
+
+                <!-- Color Variant Selector -->
+                <div class="product-variant-selector">
+                  <span class="variant-label">COLOR DEL PESTILLO:</span>
+                  <div class="variant-chips" data-card="caja-4p">
+                    <button class="variant-chip active" data-color="stealth" title="Stealth Carbon" style="--chip-color: #5c6c39;"></button>
+                    <button class="variant-chip" data-color="emerald" title="Cyber Emerald" style="--chip-color: #3b7a34;"></button>
+                    <button class="variant-chip" data-color="magenta" title="Neon Magenta" style="--chip-color: #f200a0;"></button>
+                  </div>
+                </div>
+
+                <!-- Pricing & CTA -->
+                <div class="product-card-footer">
+                  <div class="price-display">
+                    <span class="price-currency">$</span>
+                    <span class="price-amount">24.95</span>
+                    <span class="price-currency-code">USD</span>
+                  </div>
+
+                  <button 
+                    class="btn-card-action btn-add-cart" 
+                    data-product-id="caja-4p"
+                    data-name="Caja 4 Peptides (4P)"
+                    data-price="24.95"
+                    data-img="/products/box-4p.png"
+                  >
+                    <span>AÑADIR AL CARRITO</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PRODUCT CARD 2: CAJA 6P ($28.95) - FEATURED / MOST POPULAR -->
+          <article class="product-card featured" data-product-id="caja-6p">
+            <div class="product-card-inner">
+              <div class="product-card-glow featured-glow"></div>
+              
+              <!-- Featured Ribbon -->
+              <div class="featured-ribbon">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span>MÁS POPULAR // MEJOR VALOR</span>
+              </div>
+
+              <!-- Card Header & Badge -->
+              <div class="product-card-top">
+                <span class="product-tag tag-popular">EDICIÓN REFORZADA</span>
+                <span class="product-stock-tag in-stock">
+                  <span class="dot-live"></span> EN STOCK
+                </span>
+              </div>
+
+              <!-- Product Media Display -->
+              <div class="product-image-stage">
+                <img 
+                  src="/products/box-6p.png" 
+                  alt="Caja 6 Peptides Tactical Case" 
+                  class="product-card-img"
+                  loading="lazy"
+                >
+                <div class="product-grid-backdrop"></div>
+                <div class="product-capacity-badge">6 VIALES</div>
+              </div>
+
+              <!-- Product Details -->
+              <div class="product-info-block">
+                <h3 class="product-title">Caja 6 Peptides (6P)</h3>
+                <p class="product-subtitle">Chasis rectangular de grado militar con 6 compartimentos individuales moldeados, pasador de acero inoxidable y textura táctica antideslizante.</p>
+
+                <!-- Feature Pills -->
+                <div class="product-features-list">
+                  <span class="feature-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Capacidad: 6 viales
+                  </span>
+                  <span class="feature-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Aislamiento térmico extra
+                  </span>
+                  <span class="feature-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Espuma EVA modular
+                  </span>
+                </div>
+
+                <!-- Color Variant Selector -->
+                <div class="product-variant-selector">
+                  <span class="variant-label">COLOR DEL PESTILLO:</span>
+                  <div class="variant-chips" data-card="caja-6p">
+                    <button class="variant-chip active" data-color="stealth" title="Stealth Carbon" style="--chip-color: #5c6c39;"></button>
+                    <button class="variant-chip" data-color="emerald" title="Cyber Emerald" style="--chip-color: #3b7a34;"></button>
+                    <button class="variant-chip" data-color="magenta" title="Neon Magenta" style="--chip-color: #f200a0;"></button>
+                  </div>
+                </div>
+
+                <!-- Pricing & CTA -->
+                <div class="product-card-footer">
+                  <div class="price-display">
+                    <span class="price-currency">$</span>
+                    <span class="price-amount">28.95</span>
+                    <span class="price-currency-code">USD</span>
+                    <span class="price-discount-pill">RECOMENDADO</span>
+                  </div>
+
+                  <button 
+                    class="btn-card-action btn-add-cart featured-btn" 
+                    data-product-id="caja-6p"
+                    data-name="Caja 6 Peptides (6P)"
+                    data-price="28.95"
+                    data-img="/products/box-6p.png"
+                  >
+                    <span>AÑADIR AL CARRITO</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PRODUCT CARD 3: CAJA 8P ($32.95) - ONLY ONE NOT AVAILABLE -->
+          <article class="product-card out-of-stock-card" data-product-id="caja-8p">
+            <div class="product-card-inner">
+              <div class="product-card-glow"></div>
+              
+              <!-- Card Header & Badge -->
+              <div class="product-card-top">
+                <span class="product-tag tag-extended">MAX CAPACITY</span>
+                <span class="product-stock-tag out-of-stock">
+                  <span class="dot-out"></span> NO DISPONIBLE
+                </span>
+              </div>
+
+              <!-- Product Media Display with Sold Out Overlay -->
+              <div class="product-image-stage">
+                <img 
+                  src="/products/box-8p.png" 
+                  alt="Caja 8 Peptides Tactical Case" 
+                  class="product-card-img img-muted"
+                  loading="lazy"
+                >
+                <div class="product-grid-backdrop"></div>
+                <div class="sold-out-overlay">
+                  <div class="sold-out-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                    <span>AGOTADO // RE-STOCK EN PROCESO</span>
+                  </div>
+                </div>
+                <div class="product-capacity-badge">8 VIALES</div>
+              </div>
+
+              <!-- Product Details -->
+              <div class="product-info-block">
+                <h3 class="product-title">Caja 8 Peptides (8P)</h3>
+                <p class="product-subtitle">Chasis de capacidad máxima para 8 viales con doble bisagra industrial y blindaje reforzado para transporte de ciclo completo.</p>
+
+                <!-- Feature Pills -->
+                <div class="product-features-list">
+                  <span class="feature-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Capacidad: 8 viales
+                  </span>
+                  <span class="feature-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Doble pasador de bloqueo
+                  </span>
+                  <span class="feature-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Chasis blindado
+                  </span>
+                </div>
+
+                <!-- Notice of unavailability -->
+                <div class="product-unavailable-notice">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  <span>Solo este modelo se encuentra temporalmente sin disponibilidad inmediata.</span>
+                </div>
+
+                <!-- Pricing & CTA (Disabled) -->
+                <div class="product-card-footer">
+                  <div class="price-display muted">
+                    <span class="price-currency">$</span>
+                    <span class="price-amount">32.95</span>
+                    <span class="price-currency-code">USD</span>
+                  </div>
+
+                  <button 
+                    class="btn-card-action btn-sold-out" 
+                    id="btn-notify-8p"
+                    data-product="Caja 8 Peptides (8P)"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span>NOTIFICARME AL RE-STOCK</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ECOMMERCE SECTION 2: UP-SALES & TACTICAL ACCESSORIES
+         =================================================================== -->
+    <section class="accessories-section" id="accessories">
+      <div class="section-container">
+        <!-- Section Header -->
+        <div class="section-header-block">
+          <div class="section-badge badge-accent">
+            <span class="badge-diode"></span>
+            <span>COMPLEMENTOS EXCLUSIVOS // UP-SALES READY</span>
+          </div>
+          <h2 class="section-title">UP-SALES Y ACCESORIOS TÁCTICOS</h2>
+          <p class="section-desc">
+            Añade complementos diseñados especialmente para tu caja de péptidos a precio reducido al agregarlos a tu orden.
+          </p>
+        </div>
+
+        <!-- Upsell Cards Grid -->
+        <div class="accessories-grid">
+
+          <!-- UPSELL ITEM 1: SILBATO TÁCTICO GARRA -->
+          <article class="accessory-card">
+            <div class="accessory-card-inner">
+              <div class="accessory-ribbon">UP-SALE // 33% OFF</div>
+              
+              <div class="accessory-img-wrap">
+                <img 
+                  src="/products/upsell-paw-whistle.png" 
+                  alt="Silbato Táctico Garra // Tactical Paw Whistle" 
+                  class="accessory-img"
+                  loading="lazy"
+                >
+              </div>
+
+              <div class="accessory-body">
+                <div class="accessory-meta">
+                  <span class="accessory-tag">ACCESORIO LLAVERO</span>
+                  <span class="accessory-rating">★★★★★ (4.9)</span>
+                </div>
+                <h4 class="accessory-title">Silbato Táctico Garra (Paw Whistle)</h4>
+                <p class="accessory-desc">Impreso en polímero de doble inyección con acabado brillante. Silbato de alta resonancia acústica (115dB) y orificio para mosquetón o llavero de tu caja.</p>
+                
+                <div class="accessory-footer">
+                  <div class="accessory-price-block">
+                    <span class="price-old">$14.95</span>
+                    <span class="price-current">$9.95</span>
+                    <span class="price-badge-save">AHORRAS $5.00</span>
+                  </div>
+
+                  <button 
+                    class="btn-add-upsell" 
+                    data-upsell-id="paw-whistle"
+                    data-name="Silbato Táctico Garra (Paw Whistle)"
+                    data-price="9.95"
+                    data-img="/products/upsell-paw-whistle.png"
+                  >
+                    <span>+ AÑADIR AL PEDIDO</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- UPSELL ITEM 2: VARITA TÁCTICA STAR BATON -->
+          <article class="accessory-card">
+            <div class="accessory-card-inner">
+              <div class="accessory-ribbon">UP-SALE // 30% OFF</div>
+              
+              <div class="accessory-img-wrap">
+                <img 
+                  src="/products/upsell-star-wand.png" 
+                  alt="Varita Táctica Star Baton" 
+                  class="accessory-img"
+                  loading="lazy"
+                >
+              </div>
+
+              <div class="accessory-body">
+                <div class="accessory-meta">
+                  <span class="accessory-tag">EDICIÓN COLECCIONISTA</span>
+                  <span class="accessory-rating">★★★★★ (5.0)</span>
+                </div>
+                <h4 class="accessory-title">Varita Táctica Star Baton (Llavero CNC)</h4>
+                <p class="accessory-desc">Herramienta y llavero de diseño icónico con mango moleteado antideslizante de alta definición y cabezal estrellado de polímero indestructible.</p>
+                
+                <div class="accessory-footer">
+                  <div class="accessory-price-block">
+                    <span class="price-old">$16.95</span>
+                    <span class="price-current">$11.95</span>
+                    <span class="price-badge-save">AHORRAS $5.00</span>
+                  </div>
+
+                  <button 
+                    class="btn-add-upsell" 
+                    data-upsell-id="star-wand"
+                    data-name="Varita Táctica Star Baton"
+                    data-price="11.95"
+                    data-img="/products/upsell-star-wand.png"
+                  >
+                    <span>+ AÑADIR AL PEDIDO</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- UPSELL ITEM 3: PACK DE PESTILLOS MODULARES MULTICOLOR -->
+          <article class="accessory-card">
+            <div class="accessory-card-inner">
+              <div class="accessory-ribbon">PACK TRICOLOR</div>
+              
+              <div class="accessory-img-wrap latches-preview">
+                <div class="latch-samples-row">
+                  <span class="latch-sample" style="background: #5c6c39;" title="Stealth Olive"></span>
+                  <span class="latch-sample" style="background: #3b7a34;" title="Cyber Emerald"></span>
+                  <span class="latch-sample" style="background: #f200a0;" title="Neon Magenta"></span>
+                </div>
+              </div>
+
+              <div class="accessory-body">
+                <div class="accessory-meta">
+                  <span class="accessory-tag">CUSTOMIZACIÓN</span>
+                  <span class="accessory-rating">★★★★★ (4.8)</span>
+                </div>
+                <h4 class="accessory-title">Set 3x Pestillos Tácticos Intercambiables</h4>
+                <p class="accessory-desc">Personaliza el pestillo de tu caja con el tricolor oficial: Stealth Carbon, Cyber Emerald y Neon Magenta para identificar el tipo de péptidos guardados.</p>
+                
+                <div class="accessory-footer">
+                  <div class="accessory-price-block">
+                    <span class="price-old">$9.95</span>
+                    <span class="price-current">$6.95</span>
+                    <span class="price-badge-save">AHORRAS $3.00</span>
+                  </div>
+
+                  <button 
+                    class="btn-add-upsell" 
+                    data-upsell-id="latches-pack"
+                    data-name="Set 3x Pestillos Intercambiables"
+                    data-price="6.95"
+                    data-img="/products/box-4p.png"
+                  >
+                    <span>+ AÑADIR AL PEDIDO</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ECOMMERCE SECTION 3: INGENIERÍA Y ESPECIFICACIONES TÉCNICAS
+         =================================================================== -->
+    <section class="specs-section" id="specs">
+      <div class="section-container">
+        <div class="section-header-block">
+          <div class="section-badge">
+            <span class="badge-diode"></span>
+            <span>ESPECIFICACIONES MIL-SPEC // TOLERANCIA 0.08MM</span>
+          </div>
+          <h2 class="section-title">INGENIERÍA ADITIVA DE ALTA PRECISIÓN</h2>
+          <p class="section-desc">
+            Cada caja XgearUp es fabricada capa a capa con control térmico dinámico y validación de tolerancias micrométricas.
+          </p>
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-card">
+            <div class="spec-number">01</div>
+            <h4 class="spec-title">PETG-CF Carbon Matrix</h4>
+            <p class="spec-desc">Chasis reforzado con hebras continuas de fibra de carbono. Resistencia térmica de -15°C a +85°C sin deformación estructural.</p>
+          </div>
+
+          <div class="spec-card">
+            <div class="spec-number">02</div>
+            <h4 class="spec-title">Sellado Hermético O-Ring</h4>
+            <p class="spec-desc">Junta perimétrica de silicona médica que aísla los viales de péptidos de humedad ambiental, condensación y contaminación.</p>
+          </div>
+
+          <div class="spec-card">
+            <div class="spec-number">03</div>
+            <h4 class="spec-title">Absorción de Impactos 360°</h4>
+            <p class="spec-desc">Cavidades interiores con tolerancia precisa para fijar viales estándar de 3ml y 10ml, amortiguando caídas de más de 2 metros.</p>
+          </div>
+
+          <div class="spec-card">
+            <div class="spec-number">04</div>
+            <h4 class="spec-title">Pasador Inoxidable & Quick-Lock</h4>
+            <p class="spec-desc">Mecanismo de bisagra con eje de acero 316L y pestillo de resorte de tensión constante para apertura y cierre táctil instantáneo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ECOMMERCE SECTION 4: CONFIANZA Y GARANTÍA
+         =================================================================== -->
+    <section class="guarantee-section">
+      <div class="section-container">
+        <div class="guarantee-grid">
+          <div class="guarantee-item">
+            <svg class="guarantee-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div class="guarantee-text">
+              <span class="guarantee-title">Garantía Estructural Total</span>
+              <span class="guarantee-sub">Sustitución inmediata ante rotura por impacto o fallo de material.</span>
+            </div>
+          </div>
+
+          <div class="guarantee-item">
+            <svg class="guarantee-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+            <div class="guarantee-text">
+              <span class="guarantee-title">Envío Rápido con Tracking</span>
+              <span class="guarantee-sub">Envío gratuito a partir de $45.00 con código de seguimiento en vivo.</span>
+            </div>
+          </div>
+
+          <div class="guarantee-item">
+            <svg class="guarantee-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div class="guarantee-text">
+              <span class="guarantee-title">Producción On-Demand</span>
+              <span class="guarantee-sub">Impresión y curado bajo estándares de máxima rigidez superficial.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         FOOTER
+         =================================================================== -->
+    <footer class="store-footer">
+      <div class="footer-container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <img src="/xgearup.svg" alt="XgearUp by Nina" class="footer-logo">
+            <p class="footer-brand-desc">Estuches y complementos tácticos de grado laboratorio para almacenamiento seguro de péptidos.</p>
+          </div>
+
+          <div class="footer-links-group">
+            <span class="footer-heading">MODELOS</span>
+            <a href="#products">Caja 4 Peptides ($24.95)</a>
+            <a href="#products">Caja 6 Peptides ($28.95)</a>
+            <a href="#products">Caja 8 Peptides (Agotado)</a>
+          </div>
+
+          <div class="footer-links-group">
+            <span class="footer-heading">UP-SALES & EXTRAS</span>
+            <a href="#accessories">Silbato Garra ($9.95)</a>
+            <a href="#accessories">Varita Táctica ($11.95)</a>
+            <a href="#accessories">Pestillos Tricolor ($6.95)</a>
+          </div>
+
+          <div class="footer-links-group">
+            <span class="footer-heading">SEGURIDAD Y PAGO</span>
+            <p class="footer-pay-text">Pagos procesados de forma segura con encriptación SSL de 256 bits.</p>
+            <div class="payment-methods-badges">
+              <span class="pay-chip">VISA</span>
+              <span class="pay-chip">MASTERCARD</span>
+              <span class="pay-chip">APPLE PAY</span>
+              <span class="pay-chip">CRYPTO</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 XgearUp by Nina. Todos los derechos reservados. Fabricado con tecnología aditiva 3D de alta definición.</p>
+          <div class="footer-status-pill">
+            <span class="hud-dot pulsing"></span>
+            <span>ECOMMERCE MATRIX ONLINE</span>
+          </div>
+        </div>
+      </div>
     </footer>
+
+    <!-- ===================================================================
+         INTERACTIVE CART DRAWER (SLIDE-OVER PANEL)
+         =================================================================== -->
+    <div class="cart-backdrop" id="cart-backdrop"></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+      <div class="cart-drawer-header">
+        <div class="cart-header-title-wrap">
+          <h3 class="cart-drawer-title">TU ARSENAL</h3>
+          <span class="cart-drawer-count" id="cart-drawer-count">(0)</span>
+        </div>
+        <button class="cart-close-btn" id="cart-close-btn" aria-label="Cerrar carrito">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- Free Shipping Goal Progress -->
+      <div class="cart-shipping-meter">
+        <div class="shipping-meter-text" id="shipping-meter-text">
+          <span>Añade <strong>$45.00</strong> más para <strong>ENVÍO GRATIS</strong></span>
+        </div>
+        <div class="shipping-meter-track">
+          <div class="shipping-meter-fill" id="shipping-meter-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Cart Items Scrollable List -->
+      <div class="cart-items-wrapper" id="cart-items-wrapper">
+        <!-- Rendered dynamically by JS -->
+      </div>
+
+      <!-- IN-CART QUICK UP-SALES BLOCK -->
+      <div class="cart-upsell-section" id="cart-upsell-section">
+        <div class="cart-upsell-header">
+          <span class="upsell-fire-icon">🔥</span>
+          <span class="cart-upsell-title">COMPLETA TU ARSENAL // UP-SALES</span>
+        </div>
+        <div class="cart-upsell-items" id="cart-upsell-items">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </div>
+
+      <!-- Cart Drawer Footer (Totals & Checkout) -->
+      <div class="cart-drawer-footer">
+        <div class="cart-summary-line">
+          <span>Subtotal</span>
+          <span id="cart-subtotal-val">$0.00</span>
+        </div>
+        <div class="cart-summary-line">
+          <span>Envío</span>
+          <span id="cart-shipping-val">$4.95</span>
+        </div>
+        <div class="cart-summary-line total-line">
+          <span>Total</span>
+          <span id="cart-total-val" class="highlight-total">$0.00</span>
+        </div>
+
+        <button class="btn-checkout-trigger" id="btn-checkout-trigger">
+          <span>PROCEDER AL CHECKOUT</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ===================================================================
+         INTERACTIVE SMART UP-SELL MODAL (TRIGGERS ON ADD TO CART)
+         =================================================================== -->
+    <div class="upsell-modal-backdrop" id="upsell-modal-backdrop">
+      <div class="upsell-modal-box" id="upsell-modal-box">
+        <button class="modal-close-icon" id="upsell-modal-close" aria-label="Cerrar modal">&times;</button>
+        
+        <div class="upsell-modal-header">
+          <div class="upsell-alert-badge">
+            <span>🔥 OFERTA EXCLUSIVA DE BUNDLE // UP-SALE</span>
+          </div>
+          <h3 class="upsell-modal-title" id="upsell-modal-title">¡MEJORA TU SETUP CON DESCUENTO!</h3>
+          <p class="upsell-modal-sub" id="upsell-modal-sub">Añade este complemento táctico a tu pedido con precio especial rebajado antes de continuar:</p>
+        </div>
+
+        <div class="upsell-modal-offer" id="upsell-modal-offer">
+          <!-- Populated dynamically based on whether Caja 4p or 6p was added -->
+        </div>
+
+        <div class="upsell-modal-actions">
+          <button class="btn-upsell-accept" id="btn-upsell-accept">
+            <span id="upsell-accept-text">AÑADIR OFERTA Y CONTINUAR</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button class="btn-upsell-skip" id="btn-upsell-skip">
+            <span>No gracias, continuar al carrito</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         FAST CHECKOUT MODAL
+         =================================================================== -->
+    <div class="checkout-modal-backdrop" id="checkout-modal-backdrop">
+      <div class="checkout-modal-box" id="checkout-modal-box">
+        <button class="modal-close-icon" id="checkout-modal-close" aria-label="Cerrar checkout">&times;</button>
+        
+        <!-- STEP 1 & 2: CHECKOUT FORM -->
+        <div class="checkout-content" id="checkout-form-view">
+          <div class="checkout-header">
+            <span class="checkout-badge">CHECKOUT SEGURO // 256-BIT SSL</span>
+            <h3 class="checkout-title">FINALIZAR PEDIDO</h3>
+          </div>
+
+          <form id="checkout-form" class="checkout-form" onsubmit="return false;">
+            <div class="form-section">
+              <h5 class="form-sec-title">1. DATOS DE ENVÍO</h5>
+              <div class="form-row">
+                <input type="text" class="cyber-input" id="check-name" placeholder="Nombre completo" required>
+                <input type="email" class="cyber-input" id="check-email" placeholder="Correo electrónico" required>
+              </div>
+              <div class="form-row">
+                <input type="text" class="cyber-input full" id="check-address" placeholder="Dirección de entrega (calle, número, depto)" required>
+              </div>
+              <div class="form-row">
+                <input type="text" class="cyber-input" id="check-city" placeholder="Ciudad / Estado" required>
+                <input type="text" class="cyber-input" id="check-zip" placeholder="Código Postal" required>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h5 class="form-sec-title">2. MÉTODO DE PAGO</h5>
+              <div class="payment-tabs">
+                <label class="pay-option active">
+                  <input type="radio" name="pay-method" value="card" checked>
+                  <span>Tarjeta Débito/Crédito</span>
+                </label>
+                <label class="pay-option">
+                  <input type="radio" name="pay-method" value="apple">
+                  <span>Apple Pay</span>
+                </label>
+                <label class="pay-option">
+                  <input type="radio" name="pay-method" value="crypto">
+                  <span>Crypto (USDT / BTC)</span>
+                </label>
+              </div>
+
+              <div id="card-fields" class="card-fields">
+                <input type="text" class="cyber-input full" placeholder="Número de Tarjeta (4000 1234 5678 9010)">
+                <div class="form-row">
+                  <input type="text" class="cyber-input" placeholder="MM/AA">
+                  <input type="text" class="cyber-input" placeholder="CVC / CVV">
+                </div>
+              </div>
+            </div>
+
+            <div class="checkout-order-summary-box">
+              <div class="check-summary-row">
+                <span>Total a Pagar:</span>
+                <span id="checkout-total-val" class="checkout-big-total">$0.00</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-confirm-order" id="btn-confirm-order">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>CONFIRMAR Y PAGAR ORDEN</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- STEP 3: ORDER CONFIRMED VIEW -->
+        <div class="checkout-success-view" id="checkout-success-view" style="display: none;">
+          <div class="success-icon-wrap">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="16 10 11 15 8 12"/></svg>
+          </div>
+          <span class="success-badge">ORDEN TRANSMITIDA CON ÉXITO</span>
+          <h3 class="success-title">¡GRACIAS POR TU COMPRA!</h3>
+          <p class="success-code">ORDEN ID: <span id="success-order-id">#XG-89410</span></p>
+          <p class="success-desc">
+            Tu caja de péptidos ha entrado en la cola de producción aditiva. Hemos enviado la confirmación y el código de seguimiento a tu correo.
+          </p>
+
+          <button class="btn-success-back" id="btn-success-back">
+            <span>VOLVER A LA TIENDA</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div class="toast-container" id="toast-container"></div>
   </main>
 
   <script type="module" src="./main.js"></script>
