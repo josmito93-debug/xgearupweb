@@ -83,9 +83,7 @@ const hudStatusText = document.getElementById('hud-status-text');
 const layerVal = document.getElementById('layer-val');
 const extruderTempVal = document.getElementById('extruder-temp');
 const markerStatus = document.getElementById('marker-status');
-const activeColorName = document.getElementById('active-color-name');
 const btnReplay = document.getElementById('btn-replay');
-const colorButtons = document.querySelectorAll('.color-btn');
 
 const productVideos = [
   document.getElementById('video-prod-0'),
@@ -514,38 +512,6 @@ function switchColorVariant(targetIndex) {
     btnBuy.style.setProperty('--active-accent-glow', targetData.glow);
   }
 
-  // Update Buttons
-  colorButtons.forEach((btn, idx) => {
-    if (idx === targetIndex) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
-  });
-
-  // Update Floating Badge
-  const heroVideoLabel = document.getElementById('hero-video-label');
-  if (heroVideoLabel) {
-    heroVideoLabel.textContent = `SHOWCASE 3D [0${targetIndex + 1}/05]: ${targetData.name}`;
-  }
-
-  // Update Badge Label
-  if (activeColorName) {
-    gsap.to(activeColorName, {
-      opacity: 0,
-      y: -4,
-      duration: 0.15,
-      onComplete: () => {
-        activeColorName.textContent = targetData.name;
-        gsap.to(activeColorName, {
-          opacity: 1,
-          y: 0,
-          duration: 0.25
-        });
-      }
-    });
-  }
-
   activeVariantIndex = targetIndex;
 }
 
@@ -554,15 +520,6 @@ function switchColorVariant(targetIndex) {
 // ===================================================================
 
 function setupEventListeners() {
-  // Color Buttons click
-  colorButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      pauseAutoRotateTemporarily();
-      const idx = parseInt(btn.getAttribute('data-index'), 10);
-      switchColorVariant(idx);
-    });
-  });
-
   // Hero Stage Arrows
   const arrowPrev = document.getElementById('hero-arrow-prev');
   const arrowNext = document.getElementById('hero-arrow-next');
@@ -1047,8 +1004,39 @@ function setupVariantChips() {
         const colorKey = chip.getAttribute('data-color');
         cardColorSelections[cardId] = colorKey;
 
-        // Dynamic image switcher for accessories with yellow variants
-        if (cardId === 'paw-whistle') {
+        // Dynamic image switcher for Caja 4P
+        if (cardId === 'caja-4p') {
+          const img = document.getElementById('img-card-caja-4p');
+          const btn = document.querySelector('[data-product-id="caja-4p"]');
+          const map = {
+            stealth: { img: '/products/box-4p.png', name: 'Caja 4 Peptides (Stealth Carbon)' },
+            emerald: { img: '/products/box-4p-emerald.png', name: 'Caja 4 Peptides (Cyber Emerald)' },
+            magenta: { img: '/products/box-4p-magenta.png', name: 'Caja 4 Peptides (Neon Magenta)' },
+            white: { img: '/products/box-4p-white.png', name: 'Caja 4 Peptides (Arctic White)' }
+          };
+          const sel = map[colorKey] || map.stealth;
+          if (img) img.src = sel.img;
+          if (btn) {
+            btn.setAttribute('data-img', sel.img);
+            btn.setAttribute('data-name', sel.name);
+          }
+        } else if (cardId === 'caja-6p') {
+          const img = document.getElementById('img-card-caja-6p');
+          const btn = document.querySelector('[data-product-id="caja-6p"]');
+          const map = {
+            stealth: { img: '/products/box-6p.png', name: 'Caja 6 Peptides (Stealth Carbon)' },
+            magenta: { img: '/products/box-6p-magenta.png', name: 'Caja 6 Peptides (Neon Magenta)' },
+            purple: { img: '/products/box-6p-purple.png', name: 'Caja 6 Peptides (Deep Purple)' },
+            'white-blue': { img: '/products/box-6p-white-blue.png', name: 'Caja 6 Peptides (Arctic & Blue)' },
+            pastel: { img: '/products/box-6p-pastel.png', name: 'Caja 6 Peptides (Pastel Sunset)' }
+          };
+          const sel = map[colorKey] || map.stealth;
+          if (img) img.src = sel.img;
+          if (btn) {
+            btn.setAttribute('data-img', sel.img);
+            btn.setAttribute('data-name', sel.name);
+          }
+        } else if (cardId === 'paw-whistle') {
           const img = document.getElementById('img-card-paw-whistle');
           const btn = document.querySelector('[data-upsell-id="paw-whistle"]');
           if (colorKey === 'yellow') {
@@ -1096,23 +1084,32 @@ function setupAddToCartButtons() {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const pId = btn.getAttribute('data-product-id');
-      const prod = PRODUCTS_CATALOG[pId];
+      const prod = ALL_PRODUCTS_DETAILS[pId] || PRODUCTS_CATALOG[pId];
       if (!prod) return;
 
-      const selectedColorKey = cardColorSelections[pId] || 'stealth';
-      const variantName = COLOR_NAMES_MAP[selectedColorKey] || 'Stealth Carbon';
+      const selectedColorKey = cardColorSelections[pId] || prod.defaultVariant || 'stealth';
+      let variantName = 'Stealth Carbon';
+      let variantImg = prod.img;
+
+      if (prod.variants) {
+        const found = prod.variants.find(v => v.id === selectedColorKey);
+        if (found) {
+          variantName = found.name;
+          variantImg = found.img || prod.img;
+        }
+      }
 
       addToCart({
         id: prod.id,
         name: prod.name,
-        type: prod.type,
+        type: 'box',
         price: prod.price,
-        variant: `Pestillo: ${variantName}`,
-        img: prod.img,
+        variant: variantName,
+        img: variantImg,
         qty: 1
       }, true, true); // triggerUpsell = true
 
-      showToast(`✓ ${prod.name} añadido al carrito`, 'success');
+      showToast(`✓ ${prod.name} (${variantName}) añadido al arsenal`, 'success');
     });
   });
 }
@@ -1130,17 +1127,20 @@ function setupUpsellButtons() {
       const item = UPSELLS_CATALOG[upId];
       if (!item) return;
 
+      const btnImg = btn.getAttribute('data-img') || item.img;
+      const btnName = btn.getAttribute('data-name') || item.name;
+
       addToCart({
         id: item.id,
-        name: item.name,
+        name: btnName,
         type: 'accessory',
         price: item.price,
         variant: 'Edición Táctica',
-        img: item.img,
+        img: btnImg,
         qty: 1
       }, true, false);
 
-      showToast(`✓ Up-Sale añadido: ${item.name}`, 'success');
+      showToast(`✓ Up-Sale añadido: ${btnName}`, 'success');
     });
   });
 }
@@ -1569,8 +1569,9 @@ const ALL_PRODUCTS_DETAILS = {
     defaultVariant: 'stealth',
     variants: [
       { id: 'stealth', name: 'Stealth Carbon', hex: '#5c6c39', img: '/products/box-4p.png' },
-      { id: 'emerald', name: 'Cyber Emerald', hex: '#3b7a34', img: '/products/box-4p.png' },
-      { id: 'magenta', name: 'Neon Magenta', hex: '#f200a0', img: '/products/box-4p.png' }
+      { id: 'emerald', name: 'Cyber Emerald', hex: '#3b7a34', img: '/products/box-4p-emerald.png' },
+      { id: 'magenta', name: 'Neon Magenta', hex: '#f200a0', img: '/products/box-4p-magenta.png' },
+      { id: 'white', name: 'Arctic White', hex: '#ffffff', img: '/products/box-4p-white.png' }
     ],
     specs: [
       { label: 'Capacidad', val: '4 Viales estándar (2ml, 3ml, 5ml, 10ml)' },
@@ -1598,8 +1599,10 @@ const ALL_PRODUCTS_DETAILS = {
     defaultVariant: 'stealth',
     variants: [
       { id: 'stealth', name: 'Stealth Carbon', hex: '#5c6c39', img: '/products/box-6p.png' },
-      { id: 'emerald', name: 'Cyber Emerald', hex: '#3b7a34', img: '/products/box-6p.png' },
-      { id: 'magenta', name: 'Neon Magenta', hex: '#f200a0', img: '/products/box-6p.png' }
+      { id: 'magenta', name: 'Neon Magenta', hex: '#f200a0', img: '/products/box-6p-magenta.png' },
+      { id: 'purple', name: 'Deep Purple', hex: '#7b2cbf', img: '/products/box-6p-purple.png' },
+      { id: 'white-blue', name: 'Arctic & Blue', hex: '#0077b6', img: '/products/box-6p-white-blue.png' },
+      { id: 'pastel', name: 'Pastel Sunset', hex: '#f72585', img: '/products/box-6p-pastel.png' }
     ],
     specs: [
       { label: 'Capacidad', val: '6 Viales estándar en matriz 3x2' },

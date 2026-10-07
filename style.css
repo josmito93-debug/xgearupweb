@@ -1057,44 +1057,11 @@ body.is-loading {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7));
+  mix-blend-mode: screen;
 }
 
 .product-video.active {
   opacity: 1;
-}
-
-/* Floating Hero Showcase Badge */
-.hero-video-badge {
-  position: absolute;
-  top: clamp(80px, 11vh, 120px);
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(12, 14, 20, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(16px);
-  z-index: 20;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  color: #00ff88;
-  pointer-events: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-  transition: all 0.3s ease;
-}
-
-.hero-video-badge .badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #00ff88;
-  box-shadow: 0 0 8px #00ff88;
 }
 
 /* Hero Stage Arrows */
@@ -1136,7 +1103,7 @@ body.is-loading {
 /* Hero Action CTAs below Alpha Video */
 .hero-cta-group {
   position: absolute;
-  bottom: calc(max(32px, env(safe-area-inset-bottom) + 20px) + 74px + 18px);
+  bottom: calc(max(28px, env(safe-area-inset-bottom) + 20px) + 28px);
   left: 0;
   right: 0;
   display: flex;
@@ -1150,7 +1117,7 @@ body.is-loading {
 /* Scroll Hint Indicator */
 .hero-scroll-hint {
   position: absolute;
-  bottom: calc(max(32px, env(safe-area-inset-bottom) + 20px) + 74px + 74px);
+  bottom: calc(max(28px, env(safe-area-inset-bottom) + 20px) + 84px);
   left: 50%;
   transform: translateX(-50%);
   display: inline-flex;

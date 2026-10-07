@@ -208,12 +208,6 @@
 
         <!-- 5 Product Videos Stacked with position: absolute -->
         <div class="product-video-stage" id="product-video-stage">
-          <!-- Floating active product badge -->
-          <div class="hero-video-badge" id="hero-video-badge">
-            <span class="badge-dot pulsing"></span>
-            <span id="hero-video-label">SHOWCASE 3D: STEALTH CARBON [01/05]</span>
-          </div>
-
           <!-- Stage Arrow Controls (Prev / Next) -->
           <button id="hero-arrow-prev" class="hero-stage-arrow prev" aria-label="Producto anterior">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
@@ -326,68 +320,6 @@
       </div>
     </section>
 
-    <!-- BOTTOM CONTROLLER: 5 BUTTONS TO SWITCH VARIANTS/PRODUCTS -->
-    <div class="color-controller">
-      <div class="controller-glass-pill">
-        <div class="controller-header">
-          <span class="controller-title">COLOR & PRODUCT MATRIX</span>
-          <span class="controller-hint">SELECT VARIANT [1-5]</span>
-        </div>
-
-        <div class="color-buttons-row">
-          <!-- Button 1: Stealth Carbon / Olive -->
-          <button class="color-btn active" data-index="0" data-color="#5c6c39" data-name="STEALTH CARBON">
-            <span class="btn-swatch swatch-stealth"></span>
-            <div class="btn-text">
-              <span class="btn-index">01</span>
-              <span class="btn-label">STEALTH</span>
-            </div>
-            <span class="btn-glow"></span>
-          </button>
-
-          <!-- Button 2: Cyber Emerald -->
-          <button class="color-btn" data-index="1" data-color="#3b7a34" data-name="CYBER EMERALD">
-            <span class="btn-swatch swatch-emerald"></span>
-            <div class="btn-text">
-              <span class="btn-index">02</span>
-              <span class="btn-label">EMERALD</span>
-            </div>
-            <span class="btn-glow"></span>
-          </button>
-
-          <!-- Button 3: Neon Magenta -->
-          <button class="color-btn" data-index="2" data-color="#f200a0" data-name="NEON MAGENTA">
-            <span class="btn-swatch swatch-magenta"></span>
-            <div class="btn-text">
-              <span class="btn-index">03</span>
-              <span class="btn-label">MAGENTA</span>
-            </div>
-            <span class="btn-glow"></span>
-          </button>
-
-          <!-- Button 4: Star Baton Wand (from 11.mov) -->
-          <button class="color-btn" data-index="3" data-color="#e0307f" data-name="STAR BATON">
-            <span class="btn-swatch swatch-wand" style="background: #e0307f; box-shadow: 0 0 10px #e0307f;"></span>
-            <div class="btn-text">
-              <span class="btn-index">04</span>
-              <span class="btn-label">STAR WAND</span>
-            </div>
-            <span class="btn-glow" style="background: rgba(224, 48, 127, 0.45);"></span>
-          </button>
-
-          <!-- Button 5: Paw Whistle (from Wand_product_animation_sequence_1080p_20261005203056_1.mov) -->
-          <button class="color-btn" data-index="4" data-color="#ff4d88" data-name="PAW WHISTLE">
-            <span class="btn-swatch swatch-whistle" style="background: #ff4d88; box-shadow: 0 0 10px #ff4d88;"></span>
-            <div class="btn-text">
-              <span class="btn-index">05</span>
-              <span class="btn-label">SILBATO</span>
-            </div>
-            <span class="btn-glow" style="background: rgba(255, 77, 136, 0.45);"></span>
-          </button>
-        </div>
-      </div>
-    </div>
-
     <!-- ===================================================================
          ECOMMERCE SECTION 1: PRODUCT CATALOG (CAJAS DE PÉPTIDOS 4P, 6P, 8P)
          =================================================================== -->
@@ -424,6 +356,7 @@
               <!-- Product Media Display -->
               <div class="product-image-stage">
                 <img 
+                  id="img-card-caja-4p"
                   src="/products/box-4p.png" 
                   alt="Caja 4 Peptides Tactical Case" 
                   class="product-card-img"
@@ -456,11 +389,12 @@
 
                 <!-- Color Variant Selector -->
                 <div class="product-variant-selector">
-                  <span class="variant-label">COLOR DEL PESTILLO:</span>
+                  <span class="variant-label">COLOR:</span>
                   <div class="variant-chips" data-card="caja-4p">
                     <button class="variant-chip active" data-color="stealth" title="Stealth Carbon" style="--chip-color: #5c6c39;"></button>
                     <button class="variant-chip" data-color="emerald" title="Cyber Emerald" style="--chip-color: #3b7a34;"></button>
                     <button class="variant-chip" data-color="magenta" title="Neon Magenta" style="--chip-color: #f200a0;"></button>
+                    <button class="variant-chip" data-color="white" title="Arctic White" style="--chip-color: #ffffff;"></button>
                   </div>
                 </div>
 
@@ -514,6 +448,7 @@
               <!-- Product Media Display -->
               <div class="product-image-stage">
                 <img 
+                  id="img-card-caja-6p"
                   src="/products/box-6p.png" 
                   alt="Caja 6 Peptides Tactical Case" 
                   class="product-card-img"
@@ -546,11 +481,13 @@
 
                 <!-- Color Variant Selector -->
                 <div class="product-variant-selector">
-                  <span class="variant-label">COLOR DEL PESTILLO:</span>
+                  <span class="variant-label">COLOR:</span>
                   <div class="variant-chips" data-card="caja-6p">
                     <button class="variant-chip active" data-color="stealth" title="Stealth Carbon" style="--chip-color: #5c6c39;"></button>
-                    <button class="variant-chip" data-color="emerald" title="Cyber Emerald" style="--chip-color: #3b7a34;"></button>
                     <button class="variant-chip" data-color="magenta" title="Neon Magenta" style="--chip-color: #f200a0;"></button>
+                    <button class="variant-chip" data-color="purple" title="Deep Purple" style="--chip-color: #7b2cbf;"></button>
+                    <button class="variant-chip" data-color="white-blue" title="Arctic & Blue" style="--chip-color: #0077b6;"></button>
+                    <button class="variant-chip" data-color="pastel" title="Pastel Sunset" style="--chip-color: #f72585;"></button>
                   </div>
                 </div>
 
