@@ -678,7 +678,7 @@ const UPSELLS_CATALOG = {
     price: 6.95,
     originalPrice: 9.95,
     savings: 3.00,
-    img: '/products/box-4p.png',
+    img: '/products/latches-pack.png',
     desc: 'Pack tricolor de pestillos de precisión: Stealth, Emerald y Magenta.'
   }
 };
@@ -1708,10 +1708,10 @@ const ALL_PRODUCTS_DETAILS = {
     rating: '4.8',
     reviews: '64 Reseñas Verificadas',
     desc: 'Pack tricolor de pestillos de recambio rápido para estuches 4P, 6P y 8P. Permite codificar por colores el contenido de tus péptidos (Stealth Carbon, Cyber Emerald y Neon Magenta).',
-    img: '/products/box-4p.png',
+    img: '/products/latches-pack.png',
     defaultVariant: 'tricolor',
     variants: [
-      { id: 'tricolor', name: 'Pack Tricolor Oficial (3x)', hex: '#5c6c39', img: '/products/box-4p.png' }
+      { id: 'tricolor', name: 'Pack Tricolor Oficial (3x)', hex: '#5c6c39', img: '/products/latches-pack.png' }
     ],
     specs: [
       { label: 'Contenido', val: '3x Pestillos (Stealth, Emerald, Magenta)' },
