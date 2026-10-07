@@ -75,6 +75,28 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'CC Naked Shape';
+  src: url('/fonts/CC-Naked-Shape.woff2') format('woff2'),
+       url('/fonts/CC-Naked-Shape.woff') format('woff'),
+       url('/fonts/CC-Naked-Shape.otf') format('opentype'),
+       url('/fonts/CC-Naked-Shape.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'bold-display-sans-serif-naked-shape-2026-09-08-02-01-57-utc';
+  src: url('/fonts/CC-Naked-Shape.woff2') format('woff2'),
+       url('/fonts/CC-Naked-Shape.woff') format('woff'),
+       url('/fonts/CC-Naked-Shape.otf') format('opentype'),
+       url('/fonts/CC-Naked-Shape.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg-dark: #060709;
   --bg-panel: rgba(12, 14, 19, 0.75);
@@ -90,6 +112,7 @@
 
   --font-display: 'Inner', sans-serif;
   --font-mono: 'Grift', sans-serif;
+  --font-title-large: 'CC Naked Shape', 'bold-display-sans-serif-naked-shape-2026-09-08-02-01-57-utc', sans-serif;
 }
 
 *, *::before, *::after {
@@ -110,6 +133,23 @@ html, body {
   font-family: var(--font-display);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===================================================================
+   HEADINGS & TYPOGRAPHY SYSTEM
+   Regla: Títulos grandes usan 'CC Naked Shape', EXCEPTO h1 (mantiene Inner)
+   =================================================================== */
+
+h1,
+.h1-title,
+.word-print,
+.word-anygear {
+  font-family: var(--font-display) !important;
+}
+
+h2,
+.title-large {
+  font-family: var(--font-title-large);
 }
 
 body.is-loading {
@@ -1524,14 +1564,14 @@ body.is-loading {
 }
 
 .section-title {
-  font-family: 'Inner', sans-serif;
+  font-family: var(--font-title-large);
   font-size: clamp(26px, 4vw, 44px);
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: -0.015em;
+  letter-spacing: 0.02em;
   color: #ffffff;
   text-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
-  line-height: 1.05;
+  line-height: 1.08;
 }
 
 .section-desc {
@@ -2456,11 +2496,11 @@ body.is-loading {
 }
 
 .cart-drawer-title {
-  font-family: 'Inner', sans-serif;
-  font-size: 18px;
+  font-family: var(--font-title-large);
+  font-size: 19px;
   font-weight: 800;
   color: #ffffff;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
 }
 
 .cart-drawer-count {
@@ -2546,10 +2586,11 @@ body.is-loading {
 }
 
 .cart-empty-title {
-  font-family: 'Inner', sans-serif;
-  font-size: 16px;
+  font-family: var(--font-title-large);
+  font-size: 17px;
   font-weight: 800;
   color: #ffffff;
+  letter-spacing: 0.02em;
 }
 
 .cart-empty-sub {
@@ -2929,12 +2970,12 @@ body.is-loading {
 }
 
 .upsell-modal-title {
-  font-family: 'Inner', sans-serif;
-  font-size: 20px;
+  font-family: var(--font-title-large);
+  font-size: 21px;
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 6px;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
 }
 
 .upsell-modal-sub {
@@ -3120,11 +3161,11 @@ body.is-loading {
 }
 
 .checkout-title {
-  font-family: 'Inner', sans-serif;
-  font-size: 22px;
+  font-family: var(--font-title-large);
+  font-size: 23px;
   font-weight: 800;
   color: #ffffff;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
   margin-bottom: 22px;
 }
 
@@ -3280,10 +3321,11 @@ body.is-loading {
 }
 
 .success-title {
-  font-family: 'Inner', sans-serif;
-  font-size: 24px;
+  font-family: var(--font-title-large);
+  font-size: 25px;
   font-weight: 900;
   color: #ffffff;
+  letter-spacing: 0.01em;
   margin-bottom: 8px;
 }
 
