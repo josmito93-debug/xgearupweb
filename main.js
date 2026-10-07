@@ -433,16 +433,47 @@ function onJpgAnimationComplete() {
       syncTypographyWidth();
       // Start product videos synchronized
       productVideos.forEach(v => {
-        v.currentTime = 0;
-        v.play().catch(() => {});
+        if (v) {
+          v.currentTime = 0;
+          v.play().catch(() => {});
+        }
       });
+      startAutoRotate();
     }
   });
 }
 
 // ===================================================================
-// PRODUCT COLOR SWITCHER CONTROLLER
+// PRODUCT COLOR SWITCHER CONTROLLER & AUTO-ROTATION
 // ===================================================================
+
+let autoRotateTimer = null;
+let interactionPauseTimer = null;
+
+function startAutoRotate() {
+  stopAutoRotate();
+  autoRotateTimer = setInterval(() => {
+    if (!document.hidden && !document.body.classList.contains('is-loading')) {
+      const nextIdx = (activeVariantIndex + 1) % COLOR_VARIANTS.length;
+      switchColorVariant(nextIdx);
+    }
+  }, 4800);
+}
+
+function stopAutoRotate() {
+  if (autoRotateTimer) {
+    clearInterval(autoRotateTimer);
+    autoRotateTimer = null;
+  }
+}
+
+function pauseAutoRotateTemporarily() {
+  stopAutoRotate();
+  if (interactionPauseTimer) clearTimeout(interactionPauseTimer);
+  interactionPauseTimer = setTimeout(() => {
+    startAutoRotate();
+  }, 8000);
+}
 
 function switchColorVariant(targetIndex) {
   if (targetIndex === activeVariantIndex) return;
@@ -450,14 +481,16 @@ function switchColorVariant(targetIndex) {
   const currentVideo = productVideos[activeVariantIndex];
   const nextVideo = productVideos[targetIndex];
   const targetData = COLOR_VARIANTS[targetIndex];
+  if (!targetData) return;
 
-  // Synchronize playback timeline so the 3D box doesn't jump
+  // Crossfade with GSAP
   if (currentVideo && nextVideo) {
     try {
-      nextVideo.currentTime = currentVideo.currentTime;
+      nextVideo.currentTime = currentVideo.currentTime % (nextVideo.duration || 6);
     } catch (e) {}
 
-    // Crossfade with GSAP
+    nextVideo.play().catch(() => {});
+
     gsap.to(currentVideo, {
       opacity: 0,
       duration: 0.45,
@@ -490,6 +523,12 @@ function switchColorVariant(targetIndex) {
     }
   });
 
+  // Update Floating Badge
+  const heroVideoLabel = document.getElementById('hero-video-label');
+  if (heroVideoLabel) {
+    heroVideoLabel.textContent = `SHOWCASE 3D [0${targetIndex + 1}/05]: ${targetData.name}`;
+  }
+
   // Update Badge Label
   if (activeColorName) {
     gsap.to(activeColorName, {
@@ -517,19 +556,72 @@ function switchColorVariant(targetIndex) {
 function setupEventListeners() {
   // Color Buttons click
   colorButtons.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', () => {
+      pauseAutoRotateTemporarily();
       const idx = parseInt(btn.getAttribute('data-index'), 10);
       switchColorVariant(idx);
     });
   });
 
-  // Keyboard shortcut [1-5]
+  // Hero Stage Arrows
+  const arrowPrev = document.getElementById('hero-arrow-prev');
+  const arrowNext = document.getElementById('hero-arrow-next');
+  if (arrowPrev) {
+    arrowPrev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      pauseAutoRotateTemporarily();
+      const prevIdx = (activeVariantIndex - 1 + COLOR_VARIANTS.length) % COLOR_VARIANTS.length;
+      switchColorVariant(prevIdx);
+    });
+  }
+  if (arrowNext) {
+    arrowNext.addEventListener('click', (e) => {
+      e.stopPropagation();
+      pauseAutoRotateTemporarily();
+      const nextIdx = (activeVariantIndex + 1) % COLOR_VARIANTS.length;
+      switchColorVariant(nextIdx);
+    });
+  }
+
+  // Touch Swipe Gesture on Hero Stage
+  const stageEl = document.getElementById('product-video-stage');
+  if (stageEl) {
+    let touchStartX = 0;
+    stageEl.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    stageEl.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].screenX;
+      const diff = touchEndX - touchStartX;
+      if (Math.abs(diff) > 40) {
+        pauseAutoRotateTemporarily();
+        if (diff < 0) {
+          switchColorVariant((activeVariantIndex + 1) % COLOR_VARIANTS.length);
+        } else {
+          switchColorVariant((activeVariantIndex - 1 + COLOR_VARIANTS.length) % COLOR_VARIANTS.length);
+        }
+      }
+    }, { passive: true });
+  }
+
+  // Keyboard shortcut [1-5] & Arrow keys
   window.addEventListener('keydown', (e) => {
-    if (e.key === '1') switchColorVariant(0);
-    if (e.key === '2') switchColorVariant(1);
-    if (e.key === '3') switchColorVariant(2);
-    if (e.key === '4') switchColorVariant(3);
-    if (e.key === '5') switchColorVariant(4);
+    if (e.key === '1') { pauseAutoRotateTemporarily(); switchColorVariant(0); }
+    if (e.key === '2') { pauseAutoRotateTemporarily(); switchColorVariant(1); }
+    if (e.key === '3') { pauseAutoRotateTemporarily(); switchColorVariant(2); }
+    if (e.key === '4') { pauseAutoRotateTemporarily(); switchColorVariant(3); }
+    if (e.key === '5') { pauseAutoRotateTemporarily(); switchColorVariant(4); }
+    if (e.key === 'ArrowLeft') {
+      pauseAutoRotateTemporarily();
+      const prevIdx = (activeVariantIndex - 1 + COLOR_VARIANTS.length) % COLOR_VARIANTS.length;
+      switchColorVariant(prevIdx);
+    }
+    if (e.key === 'ArrowRight') {
+      pauseAutoRotateTemporarily();
+      const nextIdx = (activeVariantIndex + 1) % COLOR_VARIANTS.length;
+      switchColorVariant(nextIdx);
+    }
   });
 
   // Replay Intro Button

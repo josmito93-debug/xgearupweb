@@ -1064,6 +1064,75 @@ body.is-loading {
   opacity: 1;
 }
 
+/* Floating Hero Showcase Badge */
+.hero-video-badge {
+  position: absolute;
+  top: clamp(80px, 11vh, 120px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(12, 14, 20, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  z-index: 20;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #00ff88;
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.hero-video-badge .badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 8px #00ff88;
+}
+
+/* Hero Stage Arrows */
+.hero-stage-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(12, 14, 20, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 26;
+  backdrop-filter: blur(12px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+.hero-stage-arrow:hover {
+  background: var(--brand-pink);
+  border-color: var(--brand-pink);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 12px 30px rgba(242, 0, 160, 0.5);
+}
+
+.hero-stage-arrow.prev {
+  left: clamp(16px, 4vw, 48px);
+}
+
+.hero-stage-arrow.next {
+  right: clamp(16px, 4vw, 48px);
+}
+
 /* Hero Action CTAs below Alpha Video */
 .hero-cta-group {
   position: absolute;

@@ -206,8 +206,22 @@
           </div>
         </div>
 
-        <!-- 3 Product Videos Stacked with position: absolute -->
-        <div class="product-video-stage">
+        <!-- 5 Product Videos Stacked with position: absolute -->
+        <div class="product-video-stage" id="product-video-stage">
+          <!-- Floating active product badge -->
+          <div class="hero-video-badge" id="hero-video-badge">
+            <span class="badge-dot pulsing"></span>
+            <span id="hero-video-label">SHOWCASE 3D: STEALTH CARBON [01/05]</span>
+          </div>
+
+          <!-- Stage Arrow Controls (Prev / Next) -->
+          <button id="hero-arrow-prev" class="hero-stage-arrow prev" aria-label="Producto anterior">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button id="hero-arrow-next" class="hero-stage-arrow next" aria-label="Producto siguiente">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+
           <!-- Video 1: Stealth Carbon / Olive (Full Alpha Channel) -->
           <video 
             id="video-prod-0" 
@@ -215,11 +229,12 @@
             playsinline 
             loop 
             muted 
+            autoplay
             preload="auto"
           >
-            <source src="/videos/product-stealth.mov" type="video/quicktime">
-            <source src="/videos/product-stealth.mov" type='video/mp4; codecs="hvc1"'>
             <source src="/videos/product-stealth.webm" type="video/webm">
+            <source src="/videos/product-stealth.mov" type='video/mp4; codecs="hvc1"'>
+            <source src="/videos/product-stealth.mov" type="video/quicktime">
           </video>
 
           <!-- Video 2: Cyber Emerald Green (Full Alpha Channel) -->
@@ -229,11 +244,12 @@
             playsinline 
             loop 
             muted 
+            autoplay
             preload="auto"
           >
-            <source src="/videos/product-emerald.mov" type="video/quicktime">
-            <source src="/videos/product-emerald.mov" type='video/mp4; codecs="hvc1"'>
             <source src="/videos/product-emerald.webm" type="video/webm">
+            <source src="/videos/product-emerald.mov" type='video/mp4; codecs="hvc1"'>
+            <source src="/videos/product-emerald.mov" type="video/quicktime">
           </video>
 
           <!-- Video 3: Neon Magenta / Rose (Full Alpha Channel) -->
@@ -243,11 +259,12 @@
             playsinline 
             loop 
             muted 
+            autoplay
             preload="auto"
           >
-            <source src="/videos/product-magenta.mov" type="video/quicktime">
-            <source src="/videos/product-magenta.mov" type='video/mp4; codecs="hvc1"'>
             <source src="/videos/product-magenta.webm" type="video/webm">
+            <source src="/videos/product-magenta.mov" type='video/mp4; codecs="hvc1"'>
+            <source src="/videos/product-magenta.mov" type="video/quicktime">
           </video>
 
           <!-- Video 4: Star Baton Wand (from 11.mov) -->
@@ -257,11 +274,12 @@
             playsinline 
             loop 
             muted 
+            autoplay
             preload="auto"
           >
-            <source src="/videos/product-wand.mov" type="video/quicktime">
-            <source src="/videos/product-wand.mov" type='video/mp4; codecs="hvc1"'>
             <source src="/videos/product-wand.webm" type="video/webm">
+            <source src="/videos/product-wand.mov" type='video/mp4; codecs="hvc1"'>
+            <source src="/videos/product-wand.mov" type="video/quicktime">
           </video>
 
           <!-- Video 5: Paw Whistle (from Wand_product_animation_sequence_1080p_20261005203056_1.mov) -->
@@ -271,11 +289,12 @@
             playsinline 
             loop 
             muted 
+            autoplay
             preload="auto"
           >
-            <source src="/videos/product-whistle.mov" type="video/quicktime">
-            <source src="/videos/product-whistle.mov" type='video/mp4; codecs="hvc1"'>
             <source src="/videos/product-whistle.webm" type="video/webm">
+            <source src="/videos/product-whistle.mov" type='video/mp4; codecs="hvc1"'>
+            <source src="/videos/product-whistle.mov" type="video/quicktime">
           </video>
         </div>
 
