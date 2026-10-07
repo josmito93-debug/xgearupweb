@@ -1057,7 +1057,7 @@ body.is-loading {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  mix-blend-mode: screen;
+  background: transparent;
 }
 
 .product-video.active {
