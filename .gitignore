@@ -11,4 +11,10 @@ Thumbs.db
 Product_box_*.mov
 *Product_box_*.mov
 *bg initial animatiton*
+11.mov
+*Wand_product_animation_sequence_*.mov
+*.mov
+!public/videos/*.mov
+Llavero de huella amarilla en 3D.png
+Varita Estrella Amarilla Brillante.png
 .vercel

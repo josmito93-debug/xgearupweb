@@ -249,6 +249,34 @@
             <source src="/videos/product-magenta.mov" type='video/mp4; codecs="hvc1"'>
             <source src="/videos/product-magenta.webm" type="video/webm">
           </video>
+
+          <!-- Video 4: Star Baton Wand (from 11.mov) -->
+          <video 
+            id="video-prod-3" 
+            class="product-video" 
+            playsinline 
+            loop 
+            muted 
+            preload="auto"
+          >
+            <source src="/videos/product-wand.mov" type="video/quicktime">
+            <source src="/videos/product-wand.mov" type='video/mp4; codecs="hvc1"'>
+            <source src="/videos/product-wand.webm" type="video/webm">
+          </video>
+
+          <!-- Video 5: Paw Whistle (from Wand_product_animation_sequence_1080p_20261005203056_1.mov) -->
+          <video 
+            id="video-prod-4" 
+            class="product-video" 
+            playsinline 
+            loop 
+            muted 
+            preload="auto"
+          >
+            <source src="/videos/product-whistle.mov" type="video/quicktime">
+            <source src="/videos/product-whistle.mov" type='video/mp4; codecs="hvc1"'>
+            <source src="/videos/product-whistle.webm" type="video/webm">
+          </video>
         </div>
 
         <!-- Hero CTAs: View Products & Buy My Peptides Packet -->
@@ -279,12 +307,12 @@
       </div>
     </section>
 
-    <!-- BOTTOM CONTROLLER: 3 BUTTONS TO SWITCH COLORS -->
+    <!-- BOTTOM CONTROLLER: 5 BUTTONS TO SWITCH VARIANTS/PRODUCTS -->
     <div class="color-controller">
       <div class="controller-glass-pill">
         <div class="controller-header">
-          <span class="controller-title">COLOR MATRIX</span>
-          <span class="controller-hint">SELECT VARIANT [1-3]</span>
+          <span class="controller-title">COLOR & PRODUCT MATRIX</span>
+          <span class="controller-hint">SELECT VARIANT [1-5]</span>
         </div>
 
         <div class="color-buttons-row">
@@ -316,6 +344,26 @@
               <span class="btn-label">MAGENTA</span>
             </div>
             <span class="btn-glow"></span>
+          </button>
+
+          <!-- Button 4: Star Baton Wand (from 11.mov) -->
+          <button class="color-btn" data-index="3" data-color="#e0307f" data-name="STAR BATON">
+            <span class="btn-swatch swatch-wand" style="background: #e0307f; box-shadow: 0 0 10px #e0307f;"></span>
+            <div class="btn-text">
+              <span class="btn-index">04</span>
+              <span class="btn-label">STAR WAND</span>
+            </div>
+            <span class="btn-glow" style="background: rgba(224, 48, 127, 0.45);"></span>
+          </button>
+
+          <!-- Button 5: Paw Whistle (from Wand_product_animation_sequence_1080p_20261005203056_1.mov) -->
+          <button class="color-btn" data-index="4" data-color="#ff4d88" data-name="PAW WHISTLE">
+            <span class="btn-swatch swatch-whistle" style="background: #ff4d88; box-shadow: 0 0 10px #ff4d88;"></span>
+            <div class="btn-text">
+              <span class="btn-index">05</span>
+              <span class="btn-label">SILBATO</span>
+            </div>
+            <span class="btn-glow" style="background: rgba(255, 77, 136, 0.45);"></span>
           </button>
         </div>
       </div>
@@ -416,6 +464,11 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
                   </button>
                 </div>
+
+                <button class="btn-card-details" data-open-pdp="caja-4p">
+                  <span>VER DETALLES Y ESPECIFICACIONES</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
               </div>
             </div>
           </article>
@@ -502,6 +555,11 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
                   </button>
                 </div>
+
+                <button class="btn-card-details" data-open-pdp="caja-6p">
+                  <span>VER DETALLES Y ESPECIFICACIONES</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
               </div>
             </div>
           </article>
@@ -581,6 +639,11 @@
                     <span>NOTIFICARME AL RE-STOCK</span>
                   </button>
                 </div>
+
+                <button class="btn-card-details" data-open-pdp="caja-8p">
+                  <span>VER DETALLES Y ESPECIFICACIONES</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
               </div>
             </div>
           </article>
@@ -610,12 +673,13 @@
         <div class="accessories-grid">
 
           <!-- UPSELL ITEM 1: SILBATO TÁCTICO GARRA -->
-          <article class="accessory-card">
+          <article class="accessory-card" data-accessory-id="paw-whistle">
             <div class="accessory-card-inner">
               <div class="accessory-ribbon">UP-SALE // 33% OFF</div>
               
               <div class="accessory-img-wrap">
                 <img 
+                  id="img-card-paw-whistle"
                   src="/products/upsell-paw-whistle.png" 
                   alt="Silbato Táctico Garra // Tactical Paw Whistle" 
                   class="accessory-img"
@@ -631,6 +695,15 @@
                 <h4 class="accessory-title">Silbato Táctico Garra (Paw Whistle)</h4>
                 <p class="accessory-desc">Impreso en polímero de doble inyección con acabado brillante. Silbato de alta resonancia acústica (115dB) y orificio para mosquetón o llavero de tu caja.</p>
                 
+                <!-- Variant Selector: Pink vs Yellow -->
+                <div class="product-variant-selector" style="margin-top: 8px; margin-bottom: 12px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 10px;">
+                  <span class="variant-label">COLOR:</span>
+                  <div class="variant-chips" data-card="paw-whistle">
+                    <button class="variant-chip active" data-color="pink" title="Neon Pink" style="--chip-color: #f200a0;"></button>
+                    <button class="variant-chip" data-color="yellow" title="Solar Yellow" style="--chip-color: #ffd700;"></button>
+                  </div>
+                </div>
+
                 <div class="accessory-footer">
                   <div class="accessory-price-block">
                     <span class="price-old">$14.95</span>
@@ -648,17 +721,23 @@
                     <span>+ AÑADIR AL PEDIDO</span>
                   </button>
                 </div>
+
+                <button class="btn-card-details" data-open-pdp="paw-whistle">
+                  <span>VER DETALLES Y ESPECIFICACIONES</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
               </div>
             </div>
           </article>
 
           <!-- UPSELL ITEM 2: VARITA TÁCTICA STAR BATON -->
-          <article class="accessory-card">
+          <article class="accessory-card" data-accessory-id="star-wand">
             <div class="accessory-card-inner">
               <div class="accessory-ribbon">UP-SALE // 30% OFF</div>
               
               <div class="accessory-img-wrap">
                 <img 
+                  id="img-card-star-wand"
                   src="/products/upsell-star-wand.png" 
                   alt="Varita Táctica Star Baton" 
                   class="accessory-img"
@@ -674,6 +753,15 @@
                 <h4 class="accessory-title">Varita Táctica Star Baton (Llavero CNC)</h4>
                 <p class="accessory-desc">Herramienta y llavero de diseño icónico con mango moleteado antideslizante de alta definición y cabezal estrellado de polímero indestructible.</p>
                 
+                <!-- Variant Selector: Pink vs Yellow -->
+                <div class="product-variant-selector" style="margin-top: 8px; margin-bottom: 12px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 10px;">
+                  <span class="variant-label">COLOR:</span>
+                  <div class="variant-chips" data-card="star-wand">
+                    <button class="variant-chip active" data-color="pink" title="Neon Pink" style="--chip-color: #f200a0;"></button>
+                    <button class="variant-chip" data-color="yellow" title="Solar Yellow" style="--chip-color: #ffd700;"></button>
+                  </div>
+                </div>
+
                 <div class="accessory-footer">
                   <div class="accessory-price-block">
                     <span class="price-old">$16.95</span>
@@ -691,12 +779,17 @@
                     <span>+ AÑADIR AL PEDIDO</span>
                   </button>
                 </div>
+
+                <button class="btn-card-details" data-open-pdp="star-wand">
+                  <span>VER DETALLES Y ESPECIFICACIONES</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
               </div>
             </div>
           </article>
 
           <!-- UPSELL ITEM 3: PACK DE PESTILLOS MODULARES MULTICOLOR -->
-          <article class="accessory-card">
+          <article class="accessory-card" data-accessory-id="latches-pack">
             <div class="accessory-card-inner">
               <div class="accessory-ribbon">PACK TRICOLOR</div>
               
@@ -733,6 +826,11 @@
                     <span>+ AÑADIR AL PEDIDO</span>
                   </button>
                 </div>
+
+                <button class="btn-card-details" data-open-pdp="latches-pack">
+                  <span>VER DETALLES Y ESPECIFICACIONES</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
               </div>
             </div>
           </article>
@@ -864,6 +962,110 @@
         </div>
       </div>
     </footer>
+
+    <!-- ===================================================================
+         PRODUCT DETAIL PAGE (PDP) - DEDICATED FULL VIEW
+         =================================================================== -->
+    <div id="pdp-modal" class="pdp-overlay" aria-hidden="true">
+      <div class="pdp-sheet" id="pdp-sheet">
+        <div class="pdp-top-nav">
+          <button class="pdp-back-btn" id="pdp-back-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span>VOLVER AL CATÁLOGO</span>
+          </button>
+          <div class="pdp-breadcrumbs">
+            <span>ARSENAL</span> / <span id="pdp-crumb-category">CAJAS</span> / <span class="active" id="pdp-crumb-name">CAJA 4P</span>
+          </div>
+          <button class="pdp-close-icon" id="pdp-close-btn" aria-label="Cerrar">&times;</button>
+        </div>
+
+        <div class="pdp-main-grid">
+          <!-- Left: Gallery Stage -->
+          <div class="pdp-gallery-column">
+            <div class="pdp-stage-hero" id="pdp-stage-hero">
+              <div class="pdp-badges-floating" id="pdp-badges-container">
+                <span class="pdp-badge-item">PETG-CF REINFORCED</span>
+                <span class="pdp-badge-item">SELLO ESTANCO IP67</span>
+              </div>
+              <img id="pdp-main-img" src="/products/box-4p.png" alt="Product detail image">
+            </div>
+
+            <div class="pdp-thumbnails-row" id="pdp-thumbs-container">
+              <!-- Dynamically populated thumbnails -->
+            </div>
+          </div>
+
+          <!-- Right: Product Buy Box & Info -->
+          <div class="pdp-info-column">
+            <span class="pdp-series-tag" id="pdp-series-tag">EDICIÓN MILITAR // HIGH DENSITY</span>
+            <h2 class="pdp-title" id="pdp-title">Caja 4 Peptides (4P)</h2>
+            
+            <div class="pdp-rating-row">
+              <span class="pdp-stars">★★★★★</span>
+              <span class="pdp-review-count" id="pdp-review-count">4.9 / 5.0 (142 Reseñas Verificadas)</span>
+            </div>
+
+            <div class="pdp-price-row">
+              <span class="pdp-price-current" id="pdp-price">$24.95</span>
+              <span class="pdp-price-old" id="pdp-price-old">$34.95</span>
+              <span class="pdp-price-badge" id="pdp-badge-save">AHORRA 28%</span>
+            </div>
+
+            <p class="pdp-desc-text" id="pdp-desc">
+              Chasis de alta ingeniería para 4 viales estándar de péptidos con cierre de pestillo Hex-Lock de rápida apertura y sellado hermético perimetral.
+            </p>
+
+            <!-- Color / Variant Selector -->
+            <div class="pdp-variant-block" id="pdp-variant-block">
+              <div class="pdp-variant-label">
+                <span>VARIANTE DE COLOR:</span>
+                <span class="selected-color" id="pdp-selected-color-name">Stealth Carbon</span>
+              </div>
+              <div class="pdp-variant-chips" id="pdp-variant-chips">
+                <!-- Dynamically populated or updated chips -->
+              </div>
+            </div>
+
+            <!-- Qty Stepper & CTA -->
+            <div class="pdp-actions-row">
+              <div class="pdp-qty-stepper">
+                <button class="pdp-qty-btn" id="pdp-qty-minus">-</button>
+                <span class="pdp-qty-num" id="pdp-qty-val">1</span>
+                <button class="pdp-qty-btn" id="pdp-qty-plus">+</button>
+              </div>
+
+              <button class="btn-pdp-cart" id="pdp-add-cart-btn">
+                <span>AÑADIR AL ARSENAL</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+
+            <div class="pdp-perks-list">
+              <div class="pdp-perk-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>Envío Rápido + Tracking</span>
+              </div>
+              <div class="pdp-perk-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>Garantía de Por Vida</span>
+              </div>
+              <div class="pdp-perk-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>30 Días de Prueba</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Technical Blueprint Specs & Unboxing Checklist -->
+        <div class="pdp-details-section">
+          <h3 class="pdp-section-heading">ESPECIFICACIONES TÉCNICAS DE COMBATE</h3>
+          <div class="pdp-specs-grid" id="pdp-specs-grid">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ===================================================================
          INTERACTIVE CART DRAWER (SLIDE-OVER PANEL)

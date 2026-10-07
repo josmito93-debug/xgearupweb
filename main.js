@@ -37,6 +37,24 @@ const COLOR_VARIANTS = [
     from: "#f200a0",
     to: "#a00069",
     glow: "rgba(242, 0, 160, 0.45)"
+  },
+  { 
+    index: 3, 
+    name: "STAR BATON WAND", 
+    hex: "#e0307f", 
+    id: "video-prod-3",
+    from: "#e0307f",
+    to: "#8a1045",
+    glow: "rgba(224, 48, 127, 0.45)"
+  },
+  { 
+    index: 4, 
+    name: "PAW WHISTLE", 
+    hex: "#ff4d88", 
+    id: "video-prod-4",
+    from: "#ff4d88",
+    to: "#9e1544",
+    glow: "rgba(255, 77, 136, 0.45)"
   }
 ];
 
@@ -72,7 +90,9 @@ const colorButtons = document.querySelectorAll('.color-btn');
 const productVideos = [
   document.getElementById('video-prod-0'),
   document.getElementById('video-prod-1'),
-  document.getElementById('video-prod-2')
+  document.getElementById('video-prod-2'),
+  document.getElementById('video-prod-3'),
+  document.getElementById('video-prod-4')
 ];
 
 // ===================================================================
@@ -503,11 +523,13 @@ function setupEventListeners() {
     });
   });
 
-  // Keyboard shortcut [1, 2, 3]
+  // Keyboard shortcut [1-5]
   window.addEventListener('keydown', (e) => {
     if (e.key === '1') switchColorVariant(0);
     if (e.key === '2') switchColorVariant(1);
     if (e.key === '3') switchColorVariant(2);
+    if (e.key === '4') switchColorVariant(3);
+    if (e.key === '5') switchColorVariant(4);
   });
 
   // Replay Intro Button
@@ -637,6 +659,7 @@ function setupEcommerce() {
   setupHeaderScroll();
   setupSmoothNavigation();
   setupNotifyWaitlist();
+  setupProductDetailPage();
 }
 
 // -------------------------------------------------------------------
@@ -931,6 +954,41 @@ function setupVariantChips() {
         chip.classList.add('active');
         const colorKey = chip.getAttribute('data-color');
         cardColorSelections[cardId] = colorKey;
+
+        // Dynamic image switcher for accessories with yellow variants
+        if (cardId === 'paw-whistle') {
+          const img = document.getElementById('img-card-paw-whistle');
+          const btn = document.querySelector('[data-upsell-id="paw-whistle"]');
+          if (colorKey === 'yellow') {
+            if (img) img.src = '/products/paw-yellow.png';
+            if (btn) {
+              btn.setAttribute('data-img', '/products/paw-yellow.png');
+              btn.setAttribute('data-name', 'Silbato Táctico Garra (Amarillo Solar)');
+            }
+          } else {
+            if (img) img.src = '/products/upsell-paw-whistle.png';
+            if (btn) {
+              btn.setAttribute('data-img', '/products/upsell-paw-whistle.png');
+              btn.setAttribute('data-name', 'Silbato Táctico Garra (Paw Whistle)');
+            }
+          }
+        } else if (cardId === 'star-wand') {
+          const img = document.getElementById('img-card-star-wand');
+          const btn = document.querySelector('[data-upsell-id="star-wand"]');
+          if (colorKey === 'yellow') {
+            if (img) img.src = '/products/wand-yellow.png';
+            if (btn) {
+              btn.setAttribute('data-img', '/products/wand-yellow.png');
+              btn.setAttribute('data-name', 'Varita Táctica Star Baton (Amarillo Solar)');
+            }
+          } else {
+            if (img) img.src = '/products/upsell-star-wand.png';
+            if (btn) {
+              btn.setAttribute('data-img', '/products/upsell-star-wand.png');
+              btn.setAttribute('data-name', 'Varita Táctica Star Baton');
+            }
+          }
+        }
       });
     });
   });
@@ -1396,6 +1454,474 @@ function scrollToSection(targetId) {
   window.scrollTo({
     top: offsetPosition,
     behavior: 'smooth'
+  });
+}
+
+// -------------------------------------------------------------------
+// PRODUCT DETAIL PAGE (PDP) SYSTEM FOR ALL PRODUCTS
+// -------------------------------------------------------------------
+
+const ALL_PRODUCTS_DETAILS = {
+  'caja-4p': {
+    id: 'caja-4p',
+    name: 'Caja 4 Peptides (4P)',
+    category: 'CAJAS DE PÉPTIDOS',
+    seriesTag: 'CHASIS CÚBICO // ALTA DENSIDAD',
+    price: 24.95,
+    originalPrice: 34.95,
+    savingsBadge: 'AHORRA 28%',
+    rating: '4.9',
+    reviews: '142 Reseñas Verificadas',
+    desc: 'Chasis cúbico compacto de alta densidad con cierre mecánico de presión rápida Hex-Lock, amortiguación interna en TPU 95A y sellado hermético perimetral para 4 frascos de laboratorio.',
+    img: '/products/box-4p.png',
+    defaultVariant: 'stealth',
+    variants: [
+      { id: 'stealth', name: 'Stealth Carbon', hex: '#5c6c39', img: '/products/box-4p.png' },
+      { id: 'emerald', name: 'Cyber Emerald', hex: '#3b7a34', img: '/products/box-4p.png' },
+      { id: 'magenta', name: 'Neon Magenta', hex: '#f200a0', img: '/products/box-4p.png' }
+    ],
+    specs: [
+      { label: 'Capacidad', val: '4 Viales estándar (2ml, 3ml, 5ml, 10ml)' },
+      { label: 'Dimensiones', val: '78 x 78 x 64 mm' },
+      { label: 'Peso', val: '145 g' },
+      { label: 'Material Exterior', val: 'PETG-CF Carbon Matrix Reforzado' },
+      { label: 'Inserto Amortiguador', val: 'TPU Técnico 95A Anti-impacto' },
+      { label: 'Estanqueidad', val: 'Sello O-Ring Hermético IP67' },
+      { label: 'Pasador Articulación', val: 'Acero Inoxidable AISI 304' },
+      { label: 'Rango Térmico', val: '-20°C a +75°C' }
+    ]
+  },
+  'caja-6p': {
+    id: 'caja-6p',
+    name: 'Caja 6 Peptides (6P)',
+    category: 'CAJAS DE PÉPTIDOS',
+    seriesTag: 'EDICIÓN MILITAR // BEST SELLER',
+    price: 28.95,
+    originalPrice: 39.95,
+    savingsBadge: 'AHORRA 28%',
+    rating: '5.0',
+    reviews: '219 Reseñas Verificadas',
+    desc: 'Chasis rectangular táctico de grado militar con 6 compartimentos individuales moldeados, doble nervadura balística, pasador de acero inoxidable y textura táctica moleteada antideslizante.',
+    img: '/products/box-6p.png',
+    defaultVariant: 'stealth',
+    variants: [
+      { id: 'stealth', name: 'Stealth Carbon', hex: '#5c6c39', img: '/products/box-6p.png' },
+      { id: 'emerald', name: 'Cyber Emerald', hex: '#3b7a34', img: '/products/box-6p.png' },
+      { id: 'magenta', name: 'Neon Magenta', hex: '#f200a0', img: '/products/box-6p.png' }
+    ],
+    specs: [
+      { label: 'Capacidad', val: '6 Viales estándar en matriz 3x2' },
+      { label: 'Dimensiones', val: '114 x 78 x 64 mm' },
+      { label: 'Peso', val: '198 g' },
+      { label: 'Material Exterior', val: 'PETG-CF Carbon Matrix Reforzado' },
+      { label: 'Inserto Amortiguador', val: 'TPU Técnico 95A Anti-impacto' },
+      { label: 'Estanqueidad', val: 'Sello O-Ring Hermético IP67' },
+      { label: 'Pasador Articulación', val: 'Acero Inoxidable AISI 304' },
+      { label: 'Rango Térmico', val: '-20°C a +75°C' }
+    ]
+  },
+  'caja-8p': {
+    id: 'caja-8p',
+    name: 'Caja 8 Peptides (8P)',
+    category: 'CAJAS DE PÉPTIDOS',
+    seriesTag: 'MAX CAPACITY // EXPEDITION GEAR',
+    price: 32.95,
+    originalPrice: 44.95,
+    savingsBadge: 'AHORRA 27%',
+    rating: '4.9',
+    reviews: '88 Reseñas Verificadas',
+    desc: 'Chasis de capacidad máxima para 8 viales con doble bisagra industrial, blindaje reforzado perimetral y aislamiento térmico para transporte de ciclo completo y expedición.',
+    img: '/products/box-8p.png',
+    defaultVariant: 'stealth',
+    available: false,
+    variants: [
+      { id: 'stealth', name: 'Stealth Carbon', hex: '#5c6c39', img: '/products/box-8p.png' },
+      { id: 'emerald', name: 'Cyber Emerald', hex: '#3b7a34', img: '/products/box-8p.png' },
+      { id: 'magenta', name: 'Neon Magenta', hex: '#f200a0', img: '/products/box-8p.png' }
+    ],
+    specs: [
+      { label: 'Capacidad', val: '8 Viales en doble hilera 4x2' },
+      { label: 'Dimensiones', val: '148 x 78 x 64 mm' },
+      { label: 'Peso', val: '262 g' },
+      { label: 'Material Exterior', val: 'PETG-CF Carbon Matrix Reforzado' },
+      { label: 'Inserto Amortiguador', val: 'TPU Técnico 95A Anti-impacto' },
+      { label: 'Estanqueidad', val: 'Sello O-Ring Hermético IP67' },
+      { label: 'Pasador Articulación', val: 'Doble Pasador AISI 304' },
+      { label: 'Rango Térmico', val: '-20°C a +75°C' }
+    ]
+  },
+  'paw-whistle': {
+    id: 'paw-whistle',
+    name: 'Silbato Táctico Garra (Paw Whistle)',
+    category: 'ACCESORIOS TÁCTICOS',
+    seriesTag: 'ACCESORIO LLAVERO // RESONANCIA 115DB',
+    price: 9.95,
+    originalPrice: 14.95,
+    savingsBadge: 'AHORRA 33%',
+    rating: '4.9',
+    reviews: '96 Reseñas Verificadas',
+    desc: 'Silbato de señalización y emergencia acústica (115dB) con diseño icónico de huella felina. Fabricado en polímero técnico de alto impacto con ojal para mosquetón o anclaje a estuche.',
+    img: '/products/upsell-paw-whistle.png',
+    defaultVariant: 'pink',
+    variants: [
+      { id: 'pink', name: 'Neon Pink (Original)', hex: '#f200a0', img: '/products/upsell-paw-whistle.png' },
+      { id: 'yellow', name: 'Amarillo Solar (Gold)', hex: '#ffd700', img: '/products/paw-yellow.png' }
+    ],
+    specs: [
+      { label: 'Potencia Acústica', val: '115 dB (frecuencia de alerta)' },
+      { label: 'Dimensiones', val: '62 x 44 x 12 mm' },
+      { label: 'Peso', val: '18 g' },
+      { label: 'Material', val: 'Polímero técnico de alta densidad' },
+      { label: 'Anclaje', val: 'Ojal perimetral para llavero / mosquetón' },
+      { label: 'Resistencia al Agua', val: '100% Inmune a la humedad y polvo' }
+    ]
+  },
+  'star-wand': {
+    id: 'star-wand',
+    name: 'Varita Táctica Star Baton',
+    category: 'ACCESORIOS TÁCTICOS',
+    seriesTag: 'EDICIÓN COLECCIONISTA // LLAVERO CNC',
+    price: 11.95,
+    originalPrice: 16.95,
+    savingsBadge: 'AHORRA 30%',
+    rating: '5.0',
+    reviews: '112 Reseñas Verificadas',
+    desc: 'Varita táctica de colección y herramienta llavero con cabezal estrellado tridimensional y mango moleteado antideslizante para agarre de máxima precisión.',
+    img: '/products/upsell-star-wand.png',
+    defaultVariant: 'pink',
+    variants: [
+      { id: 'pink', name: 'Neon Pink (Original)', hex: '#f200a0', img: '/products/upsell-star-wand.png' },
+      { id: 'yellow', name: 'Amarillo Solar (Gold)', hex: '#ffd700', img: '/products/wand-yellow.png' }
+    ],
+    specs: [
+      { label: 'Diseño', val: 'Cabezal estrellado con mango táctico' },
+      { label: 'Dimensiones', val: '124 x 36 x 14 mm' },
+      { label: 'Peso', val: '24 g' },
+      { label: 'Textura del Mango', val: 'Moleteado CNC diamantado antideslizante' },
+      { label: 'Material', val: 'Polímero compuesto indeformable' },
+      { label: 'Acabado', val: 'Resistente a rayos UV y abrasión' }
+    ]
+  },
+  'latches-pack': {
+    id: 'latches-pack',
+    name: 'Set 3x Pestillos Tácticos Intercambiables',
+    category: 'ACCESORIOS TÁCTICOS',
+    seriesTag: 'SISTEMA MODULAR // TRICOLOR OFICIAL',
+    price: 6.95,
+    originalPrice: 9.95,
+    savingsBadge: 'AHORRA 30%',
+    rating: '4.8',
+    reviews: '64 Reseñas Verificadas',
+    desc: 'Pack tricolor de pestillos de recambio rápido para estuches 4P, 6P y 8P. Permite codificar por colores el contenido de tus péptidos (Stealth Carbon, Cyber Emerald y Neon Magenta).',
+    img: '/products/box-4p.png',
+    defaultVariant: 'tricolor',
+    variants: [
+      { id: 'tricolor', name: 'Pack Tricolor Oficial (3x)', hex: '#5c6c39', img: '/products/box-4p.png' }
+    ],
+    specs: [
+      { label: 'Contenido', val: '3x Pestillos (Stealth, Emerald, Magenta)' },
+      { label: 'Compatibilidad', val: 'Cajas 4P, 6P y 8P XgearUp' },
+      { label: 'Sistema de Montaje', val: 'Quick-Swap sin herramientas requeridas' },
+      { label: 'Material', val: 'Polímero de alta resistencia a tracción' },
+      { label: 'Ciclos de Apertura', val: 'Probado en más de 10,000 accionamientos' }
+    ]
+  }
+};
+
+let currentPdpProduct = null;
+let currentPdpVariant = null;
+let currentPdpQty = 1;
+
+function setupProductDetailPage() {
+  const modal = document.getElementById('pdp-modal');
+  const closeBtn = document.getElementById('pdp-close-btn');
+  const backBtn = document.getElementById('pdp-back-btn');
+  const qtyMinus = document.getElementById('pdp-qty-minus');
+  const qtyPlus = document.getElementById('pdp-qty-plus');
+  const addCartBtn = document.getElementById('pdp-add-cart-btn');
+
+  if (closeBtn) closeBtn.addEventListener('click', closeProductDetail);
+  if (backBtn) backBtn.addEventListener('click', closeProductDetail);
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeProductDetail();
+    });
+  }
+
+  // Escape key to close
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+      closeProductDetail();
+    }
+  });
+
+  // Quantity Stepper
+  if (qtyMinus) {
+    qtyMinus.addEventListener('click', () => {
+      if (currentPdpQty > 1) {
+        currentPdpQty--;
+        const el = document.getElementById('pdp-qty-val');
+        if (el) el.textContent = currentPdpQty;
+      }
+    });
+  }
+
+  if (qtyPlus) {
+    qtyPlus.addEventListener('click', () => {
+      currentPdpQty++;
+      const el = document.getElementById('pdp-qty-val');
+      if (el) el.textContent = currentPdpQty;
+    });
+  }
+
+  // Add to cart from PDP
+  if (addCartBtn) {
+    addCartBtn.addEventListener('click', () => {
+      if (!currentPdpProduct) return;
+      if (currentPdpProduct.available === false) {
+        showToast('⚠️ Este producto se encuentra actualmente agotado', 'warn');
+        return;
+      }
+
+      const variantName = currentPdpVariant ? currentPdpVariant.name : 'Estándar';
+      const variantImg = (currentPdpVariant && currentPdpVariant.img) || currentPdpProduct.img;
+
+      addToCart({
+        id: currentPdpProduct.id,
+        name: currentPdpProduct.name,
+        type: currentPdpProduct.category === 'CAJAS DE PÉPTIDOS' ? 'box' : 'accessory',
+        price: currentPdpProduct.price,
+        variant: variantName,
+        img: variantImg,
+        qty: currentPdpQty
+      }, true, false);
+
+      showToast(`✅ ${currentPdpProduct.name} (${variantName}) añadido al arsenal`, 'success');
+      closeProductDetail();
+    });
+  }
+
+  // Listen to all elements with data-open-pdp
+  document.querySelectorAll('[data-open-pdp]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const pId = btn.getAttribute('data-open-pdp');
+      openProductDetail(pId);
+    });
+  });
+
+  // Card images & titles click to open PDP
+  document.querySelectorAll('.product-card').forEach(card => {
+    const pId = card.getAttribute('data-product-id');
+    const imgStage = card.querySelector('.product-image-stage');
+    const title = card.querySelector('.product-title');
+    if (imgStage && pId) {
+      imgStage.style.cursor = 'pointer';
+      imgStage.addEventListener('click', () => openProductDetail(pId));
+    }
+    if (title && pId) {
+      title.style.cursor = 'pointer';
+      title.addEventListener('click', () => openProductDetail(pId));
+    }
+  });
+
+  document.querySelectorAll('.accessory-card').forEach(card => {
+    const pId = card.getAttribute('data-accessory-id');
+    const imgWrap = card.querySelector('.accessory-img-wrap');
+    const title = card.querySelector('.accessory-title');
+    if (imgWrap && pId) {
+      imgWrap.style.cursor = 'pointer';
+      imgWrap.addEventListener('click', () => openProductDetail(pId));
+    }
+    if (title && pId) {
+      title.style.cursor = 'pointer';
+      title.addEventListener('click', () => openProductDetail(pId));
+    }
+  });
+
+  // Check URL hash on page load
+  checkPdpHash();
+  window.addEventListener('hashchange', checkPdpHash);
+}
+
+function checkPdpHash() {
+  const hash = window.location.hash;
+  if (hash && hash.startsWith('#product/')) {
+    const pId = hash.replace('#product/', '').trim();
+    if (ALL_PRODUCTS_DETAILS[pId]) {
+      openProductDetail(pId, false);
+    }
+  }
+}
+
+function openProductDetail(productId, updateHash = true) {
+  const prod = ALL_PRODUCTS_DETAILS[productId];
+  if (!prod) return;
+
+  currentPdpProduct = prod;
+  currentPdpQty = 1;
+  const initialVariant = prod.variants.find(v => v.id === prod.defaultVariant) || prod.variants[0];
+  currentPdpVariant = initialVariant;
+
+  const modal = document.getElementById('pdp-modal');
+  const sheet = document.getElementById('pdp-sheet');
+  if (!modal || !sheet) return;
+
+  // Update DOM fields
+  const elCrumbCat = document.getElementById('pdp-crumb-category');
+  if (elCrumbCat) elCrumbCat.textContent = prod.category;
+
+  const elCrumbName = document.getElementById('pdp-crumb-name');
+  if (elCrumbName) elCrumbName.textContent = prod.name;
+
+  const elSeriesTag = document.getElementById('pdp-series-tag');
+  if (elSeriesTag) elSeriesTag.textContent = prod.seriesTag;
+
+  const elTitle = document.getElementById('pdp-title');
+  if (elTitle) elTitle.textContent = prod.name;
+
+  const elReviews = document.getElementById('pdp-review-count');
+  if (elReviews) elReviews.textContent = `${prod.rating} / 5.0 (${prod.reviews})`;
+
+  const elPrice = document.getElementById('pdp-price');
+  if (elPrice) elPrice.textContent = `$${prod.price.toFixed(2)}`;
+
+  const elPriceOld = document.getElementById('pdp-price-old');
+  if (elPriceOld) elPriceOld.textContent = `$${prod.originalPrice.toFixed(2)}`;
+
+  const elBadgeSave = document.getElementById('pdp-badge-save');
+  if (elBadgeSave) elBadgeSave.textContent = prod.savingsBadge;
+
+  const elDesc = document.getElementById('pdp-desc');
+  if (elDesc) elDesc.textContent = prod.desc;
+
+  const elQtyVal = document.getElementById('pdp-qty-val');
+  if (elQtyVal) elQtyVal.textContent = '1';
+
+  // Image
+  const mainImg = document.getElementById('pdp-main-img');
+  if (mainImg) {
+    mainImg.src = initialVariant.img || prod.img;
+    mainImg.alt = prod.name;
+  }
+
+  // Color variant chips
+  const chipsContainer = document.getElementById('pdp-variant-chips');
+  const selectedColorName = document.getElementById('pdp-selected-color-name');
+  if (selectedColorName) selectedColorName.textContent = initialVariant.name;
+
+  if (chipsContainer) {
+    chipsContainer.innerHTML = prod.variants.map((v) => `
+      <button class="pdp-chip-btn ${v.id === initialVariant.id ? 'active' : ''}" data-variant-id="${v.id}">
+        <span class="chip-color-dot" style="background: ${v.hex}; color: ${v.hex};"></span>
+        <span>${v.name}</span>
+      </button>
+    `).join('');
+
+    chipsContainer.querySelectorAll('.pdp-chip-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const vId = btn.getAttribute('data-variant-id');
+        const variant = prod.variants.find(v => v.id === vId);
+        if (!variant) return;
+
+        chipsContainer.querySelectorAll('.pdp-chip-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentPdpVariant = variant;
+        if (selectedColorName) selectedColorName.textContent = variant.name;
+
+        if (variant.img && mainImg) {
+          gsap.to(mainImg, {
+            opacity: 0.3,
+            duration: 0.15,
+            onComplete: () => {
+              mainImg.src = variant.img;
+              gsap.to(mainImg, { opacity: 1, duration: 0.25 });
+            }
+          });
+        }
+      });
+    });
+  }
+
+  // Specs Matrix Grid
+  const specsGrid = document.getElementById('pdp-specs-grid');
+  if (specsGrid) {
+    specsGrid.innerHTML = prod.specs.map(spec => `
+      <div class="pdp-spec-row">
+        <span class="pdp-spec-label">${spec.label}</span>
+        <span class="pdp-spec-val">${spec.val}</span>
+      </div>
+    `).join('');
+  }
+
+  // Thumbnails row
+  const thumbsContainer = document.getElementById('pdp-thumbs-container');
+  if (thumbsContainer) {
+    thumbsContainer.innerHTML = prod.variants.map(v => `
+      <button class="pdp-thumb-btn ${v.id === initialVariant.id ? 'active' : ''}" data-variant-id="${v.id}">
+        <img src="${v.img || prod.img}" alt="${v.name}">
+      </button>
+    `).join('');
+
+    thumbsContainer.querySelectorAll('.pdp-thumb-btn').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const vId = thumb.getAttribute('data-variant-id');
+        if (chipsContainer) {
+          const vBtn = chipsContainer.querySelector(`[data-variant-id="${vId}"]`);
+          if (vBtn) vBtn.click();
+        }
+        thumbsContainer.querySelectorAll('.pdp-thumb-btn').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+      });
+    });
+  }
+
+  // Update Button text if sold out
+  const addCartBtn = document.getElementById('pdp-add-cart-btn');
+  if (addCartBtn) {
+    if (prod.available === false) {
+      addCartBtn.innerHTML = '<span>AGOTADO // NOTIFICARME</span>';
+      addCartBtn.style.background = 'rgba(255,255,255,0.1)';
+      addCartBtn.style.boxShadow = 'none';
+    } else {
+      addCartBtn.innerHTML = '<span>AÑADIR AL ARSENAL</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>';
+      addCartBtn.style.background = 'linear-gradient(135deg, #f200a0 0%, #aa0070 100%)';
+      addCartBtn.style.boxShadow = '0 8px 24px rgba(242, 0, 160, 0.4)';
+    }
+  }
+
+  // Show & Animate Modal
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  gsap.fromTo(sheet, 
+    { opacity: 0, y: 35, scale: 0.98 },
+    { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: 'power3.out' }
+  );
+
+  if (updateHash) {
+    history.pushState(null, '', `#product/${productId}`);
+  }
+}
+
+function closeProductDetail() {
+  const modal = document.getElementById('pdp-modal');
+  const sheet = document.getElementById('pdp-sheet');
+  if (!modal || !modal.classList.contains('active')) return;
+
+  gsap.to(sheet, {
+    opacity: 0,
+    y: 20,
+    scale: 0.98,
+    duration: 0.25,
+    ease: 'power2.in',
+    onComplete: () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      currentPdpProduct = null;
+      if (window.location.hash.startsWith('#product/')) {
+        history.pushState(null, '', window.location.pathname + window.location.search);
+      }
+    }
   });
 }
 
